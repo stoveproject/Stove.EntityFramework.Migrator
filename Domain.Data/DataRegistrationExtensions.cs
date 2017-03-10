@@ -11,10 +11,7 @@ namespace Domain.Data
         public static IIocBuilder UseData(this IIocBuilder builder)
         {
             return builder
-                .RegisterServices(r => r.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly()))
-                .UseStoveEntityFramework()
-                .UseStoveDbContextEfTransactionStrategy()
-                .UseStoveTypedConnectionStringResolver();
+                .RegisterServices(r => r.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly()));
         }
     }
 }

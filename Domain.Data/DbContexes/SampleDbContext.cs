@@ -2,14 +2,14 @@
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 
-using Domain.Data.Entities;
+using Autofac.Extras.IocManager;
 
-using Stove.EntityFramework.EntityFramework;
+using Domain.Data.Entities;
 
 namespace Domain.Data.DbContexes
 {
     [DbConfigurationType(typeof(SampleDbContextConfiguration))]
-    public class SampleDbContext : StoveDbContext
+    public class SampleDbContext : DbContext, ITransientDependency
     {
         public SampleDbContext() : base("Default")
         {

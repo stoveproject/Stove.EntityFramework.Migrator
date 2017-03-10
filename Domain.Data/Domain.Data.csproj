@@ -122,6 +122,10 @@
     <Compile Include="Migrations\SampleDbContext\201703101921364_InitialDatabaseCreation.Designer.cs">
       <DependentUpon>201703101921364_InitialDatabaseCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SampleDbContext\201703102306271_AlterSp_Migration.cs" />
+    <Compile Include="Migrations\SampleDbContext\201703102306271_AlterSp_Migration.Designer.cs">
+      <DependentUpon>201703102306271_AlterSp_Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SampleDbContext\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Migrations\SampleDbContextStoveDbMigrator.cs" />
@@ -144,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\SampleDbContext\201703101921364_InitialDatabaseCreation.resx">
       <DependentUpon>201703101921364_InitialDatabaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SampleDbContext\201703102306271_AlterSp_Migration.resx">
+      <DependentUpon>201703102306271_AlterSp_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

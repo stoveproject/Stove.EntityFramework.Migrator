@@ -21,27 +21,24 @@ namespace Domain.Data
             _unitOfWorkManager = unitOfWorkManager;
             _resolver = resolver;
             _connectionStringResolver = connectionStringResolver;
+            CurrentDbContextName = typeof(TDbContext).FullName;
+            CurrentDbConfigurationName = typeof(TConfiguration).FullName;
         }
 
         public virtual void CreateOrMigrate()
         {
             var args = new ConnectionStringResolveArgs();
-
             args["DbContextType"] = typeof(TDbContext);
             args["DbContextConcreteType"] = typeof(TDbContext);
 
-            string nameOrConnectionString = ConnectionStringHelper.GetConnectionString(
-                _connectionStringResolver.GetNameOrConnectionString(args)
-            );
+            string nameOrConnectionString = _connectionStringResolver.GetNameOrConnectionString(args);
 
             using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin(TransactionScopeOption.Suppress))
             {
                 using (IScopeResolver scope = _resolver.BeginScope())
                 {
                     var dbContext = scope.Resolve<TDbContext>(new { nameOrConnectionString });
-                    var dbInitializer = new MigrateDatabaseToLatestVersion<TDbContext, TConfiguration>(
-                        true,
-                        new TConfiguration());
+                    var dbInitializer = new MigrateDatabaseToLatestVersion<TDbContext, TConfiguration>(true, new TConfiguration());
 
                     dbInitializer.InitializeDatabase(dbContext);
 
@@ -50,5 +47,9 @@ namespace Domain.Data
                 }
             }
         }
+
+        public string CurrentDbContextName { get; }
+
+        public string CurrentDbConfigurationName { get; }
     }
 }

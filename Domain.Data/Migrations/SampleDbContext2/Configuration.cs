@@ -1,10 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace Domain.Data.Migrations.SampleDbContext2
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     public sealed class Configuration : DbMigrationsConfiguration<DbContexes.SampleDbContext2>
     {
         public Configuration()
@@ -15,6 +12,8 @@ namespace Domain.Data.Migrations.SampleDbContext2
 
         protected override void Seed(DbContexes.SampleDbContext2 context)
         {
+            // context.DisableAllFilters();
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

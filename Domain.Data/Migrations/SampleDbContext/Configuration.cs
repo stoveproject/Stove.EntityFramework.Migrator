@@ -15,6 +15,8 @@ namespace Domain.Data.Migrations.SampleDbContext
 
         protected override void Seed(DbContexes.SampleDbContext context)
         {
+            // context.DisableAllFilters();
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
