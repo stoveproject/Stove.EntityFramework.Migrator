@@ -2,10 +2,14 @@
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 
-namespace Domain.Data
+using Domain.Data.Entities;
+
+using Stove.EntityFramework.EntityFramework;
+
+namespace Domain.Data.DbContexes
 {
     [DbConfigurationType(typeof(SampleDbContextConfiguration))]
-    public class SampleDbContext : DbContext
+    public class SampleDbContext : StoveDbContext
     {
         public SampleDbContext() : base("Default")
         {

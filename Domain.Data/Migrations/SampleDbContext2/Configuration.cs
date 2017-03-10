@@ -5,7 +5,7 @@ namespace Domain.Data.Migrations.SampleDbContext2
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Domain.Data.SampleDbContext2>
+    public sealed class Configuration : DbMigrationsConfiguration<DbContexes.SampleDbContext2>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace Domain.Data.Migrations.SampleDbContext2
             MigrationsDirectory = @"Migrations\SampleDbContext2";
         }
 
-        protected override void Seed(Domain.Data.SampleDbContext2 context)
+        protected override void Seed(DbContexes.SampleDbContext2 context)
         {
             //  This method will be called after migrating to the latest version.
 
