@@ -18,8 +18,8 @@ namespace Domain.Data.Migrator
         {
             EntityFrameworkProfiler.Initialize();
 
-            Database.SetInitializer<SampleDbContext>(null);
-            Database.SetInitializer<SampleDbContext2>(null);
+            //Database.SetInitializer<SampleDbContext>(null);
+            //Database.SetInitializer<SampleDbContext2>(null);
 
             IRootResolver rootResolver = IocBuilder.New
                                                    .UseAutofacContainerBuilder()

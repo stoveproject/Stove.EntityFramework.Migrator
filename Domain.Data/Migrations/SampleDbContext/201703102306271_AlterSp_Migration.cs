@@ -1,8 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace Domain.Data.Migrations.SampleDbContext
 {
-    using System;
-    using System.Data.Entity.Migrations;
-
     public partial class AlterSp_Migration : DbMigration
     {
         public override void Up()
