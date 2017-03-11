@@ -12,6 +12,8 @@ namespace Stove.Migrator
 {
     public class DbUpMigrationStrategy : IMigrationStrategy
     {
+        private const string DpUpScriptsFolderName = "Scripts";
+
         public DbUpMigrationStrategy()
         {
             Logger = NullLogger.Instance;
@@ -25,9 +27,11 @@ namespace Stove.Migrator
         {
             Logger.Info($"DbContext migration strategy started for {typeof(TDbContext).GetTypeInfo().Name}...");
 
+            string scriptPrefix = $"{migrationAssembly.GetName().Name}.{DpUpScriptsFolderName}.{typeof(TDbContext).GetTypeInfo().Name}";
+
             UpgradeEngine upgrader = DeployChanges.To
                                                   .SqlDatabase(nameOrConnectionString)
-                                                  .WithScriptsEmbeddedInAssembly(migrationAssembly)
+                                                  .WithScriptsAndCodeEmbeddedInAssembly(migrationAssembly, s => s.EndsWith(".sql") && s.StartsWith(scriptPrefix))
                                                   .LogToConsole()
                                                   .WithTransaction()
                                                   .Build();

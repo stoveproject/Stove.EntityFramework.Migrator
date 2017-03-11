@@ -109,17 +109,13 @@
     <Compile Include="Migrations\SampleDbContext\201703101921364_InitialDatabaseCreation.Designer.cs">
       <DependentUpon>201703101921364_InitialDatabaseCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\SampleDbContext\201703102306271_AlterSp_Migration.cs" />
-    <Compile Include="Migrations\SampleDbContext\201703102306271_AlterSp_Migration.Designer.cs">
-      <DependentUpon>201703102306271_AlterSp_Migration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\SampleDbContext\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Migrations\SampleDbContextStoveDbMigrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbContexes\SampleDbContext.cs" />
     <Compile Include="DbContexes\SampleDbContext2.cs" />
-    <EmbeddedResource Include="Scripts\Script0001 - InserProduct_Jean.sql" />
+    <EmbeddedResource Include="Scripts\SampleDbContext2\Script0001 - InserProduct_Jean.sql" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,15 +134,15 @@
     <EmbeddedResource Include="Migrations\SampleDbContext\201703101921364_InitialDatabaseCreation.resx">
       <DependentUpon>201703101921364_InitialDatabaseCreation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\SampleDbContext\201703102306271_AlterSp_Migration.resx">
-      <DependentUpon>201703102306271_AlterSp_Migration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stove.Migrator\Stove.Migrator.csproj">
       <Project>{8CDBBE30-5E13-4266-908B-B5BD9D39C336}</Project>
       <Name>Stove.Migrator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\SampleDbContext\Script0001 - InsertUser_Oguzhan.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

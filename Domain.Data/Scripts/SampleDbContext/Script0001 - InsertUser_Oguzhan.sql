@@ -1,0 +1,1 @@
+﻿INSERT INTO dbo.Users ( Name ) VALUES ( N'Oguzhan' )
