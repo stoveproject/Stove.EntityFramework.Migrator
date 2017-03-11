@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
 
 using Autofac.Extras.IocManager;
 
-using Domain.Data.DbContexes;
+using CommandLine;
 
 using HibernatingRhinos.Profiler.Appender.EntityFramework;
 
@@ -18,8 +17,13 @@ namespace Domain.Data.Migrator
         {
             EntityFrameworkProfiler.Initialize();
 
-            //Database.SetInitializer<SampleDbContext>(null);
-            //Database.SetInitializer<SampleDbContext2>(null);
+            var options = new MigrationOptions();
+            if (Parser.Default.ParseArguments(args, options))
+            {
+                if (options.Is(MigrationType.DbUp))
+                {
+                }
+            }
 
             IRootResolver rootResolver = IocBuilder.New
                                                    .UseAutofacContainerBuilder()

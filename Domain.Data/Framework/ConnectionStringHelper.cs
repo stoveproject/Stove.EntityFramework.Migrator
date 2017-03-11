@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Domain.Data
+namespace Domain.Data.Framework
 {
     public static class ConnectionStringHelper
     {

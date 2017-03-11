@@ -2,8 +2,6 @@
 
 using Autofac.Extras.IocManager;
 
-using Stove.EntityFramework;
-
 namespace Domain.Data
 {
     public static class DataRegistrationExtensions

@@ -1,10 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace Domain.Data.Migrations.SampleDbContext
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     public sealed class Configuration : DbMigrationsConfiguration<DbContexes.SampleDbContext>
     {
         public Configuration()
