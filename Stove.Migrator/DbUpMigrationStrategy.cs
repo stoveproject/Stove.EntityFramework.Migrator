@@ -34,14 +34,12 @@ namespace Stove.Migrator
 
             DatabaseUpgradeResult result = upgrader.PerformUpgrade();
 
-            if (result.Successful)
-            {
-                Logger.Info($"DbContext migration strategy finished for {typeof(TDbContext).GetTypeInfo().Name}...");
-            }
-            else
+            if (!result.Successful)
             {
                 throw new DbUpdateException(result.Error.Message, result.Error);
             }
+
+            Logger.Info($"DbContext migration strategy finished for {typeof(TDbContext).GetTypeInfo().Name}...");
         }
     }
 }
