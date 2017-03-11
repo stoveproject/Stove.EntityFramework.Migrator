@@ -6,7 +6,7 @@ using Autofac.Extras.IocManager;
 
 using Stove.Log;
 
-namespace Domain.Data.Framework
+namespace Stove.Migrator
 {
     public class DbContextMigrationStrategy : IMigrationStrategy
     {
@@ -20,7 +20,7 @@ namespace Domain.Data.Framework
 
         public ILogger Logger { get; set; }
 
-        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString)
+        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString, Assembly migrationAssembly = null)
             where TDbContext : DbContext
             where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
         {

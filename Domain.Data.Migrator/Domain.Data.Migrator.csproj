@@ -161,6 +161,10 @@
       <Project>{fc236b8e-7bdb-4a9a-8ddd-781a281fe49f}</Project>
       <Name>Domain.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Stove.Migrator\Stove.Migrator.csproj">
+      <Project>{8CDBBE30-5E13-4266-908B-B5BD9D39C336}</Project>
+      <Name>Stove.Migrator</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

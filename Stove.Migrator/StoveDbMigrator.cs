@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Reflection;
 
 using Autofac.Extras.IocManager;
 
 using Stove.Domain.Uow;
 using Stove.Extensions;
 
-namespace Domain.Data.Framework
+namespace Stove.Migrator
 {
     public abstract class StoveDbMigrator<TDbContext, TConfiguration> : IStoveDbMigrator, ITransientDependency
         where TDbContext : DbContext
@@ -25,8 +26,8 @@ namespace Domain.Data.Framework
             _connectionStringResolver = connectionStringResolver;
             _unitOfWorkManager = unitOfWorkManager;
             _migrationStrategies = migrationStrategies;
-            CurrentDbContextName = typeof(TDbContext).FullName;
-            CurrentDbConfigurationName = typeof(TConfiguration).FullName;
+            CurrentDbContextName = typeof(TDbContext).GetTypeInfo().Name;
+            CurrentDbConfigurationName = typeof(TConfiguration).GetTypeInfo().Name;
         }
 
         public virtual void CreateOrMigrate()
@@ -35,14 +36,13 @@ namespace Domain.Data.Framework
             args["DbContextType"] = typeof(TDbContext);
             args["DbContextConcreteType"] = typeof(TDbContext);
 
-            string nameOrConnectionString = _connectionStringResolver.GetNameOrConnectionString(args);
+            string nameOrConnectionString = ConnectionStringHelper.GetConnectionString(
+                _connectionStringResolver.GetNameOrConnectionString(args)
+            );
 
             using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin())
             {
-                _migrationStrategies.ForEach(strategy =>
-                {
-                    strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString);
-                });
+                _migrationStrategies.ForEach(strategy => { strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString, MigrationAssembly); });
 
                 _unitOfWorkManager.Current.SaveChanges();
                 uow.Complete();
@@ -52,5 +52,7 @@ namespace Domain.Data.Framework
         public string CurrentDbContextName { get; }
 
         public string CurrentDbConfigurationName { get; }
+
+        public abstract Assembly MigrationAssembly { get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Domain.Data.Framework
+namespace Stove.Migrator
 {
     public static class ConnectionStringHelper
     {

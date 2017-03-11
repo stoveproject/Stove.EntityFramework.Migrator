@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 
-using Domain.Data.Framework;
 using Domain.Data.Migrations.SampleDbContext2;
 
 using Stove.Domain.Uow;
+using Stove.Migrator;
 
 namespace Domain.Data.Migrations
 {
@@ -15,5 +16,7 @@ namespace Domain.Data.Migrations
             IEnumerable<IMigrationStrategy> migrationStrategies) : base(connectionStringResolver, unitOfWorkManager, migrationStrategies)
         {
         }
+
+        public override Assembly MigrationAssembly { get; } = Assembly.GetExecutingAssembly();
     }
 }

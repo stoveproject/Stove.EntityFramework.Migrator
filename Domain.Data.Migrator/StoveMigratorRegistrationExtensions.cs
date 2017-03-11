@@ -2,9 +2,8 @@
 
 using Autofac.Extras.IocManager;
 
-using Domain.Data.Framework;
-
 using Stove.EntityFramework;
+using Stove.Migrator;
 
 namespace Domain.Data.Migrator
 {

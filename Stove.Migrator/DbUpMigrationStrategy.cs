@@ -8,7 +8,7 @@ using DbUp.Engine;
 
 using Stove.Log;
 
-namespace Domain.Data.Framework
+namespace Stove.Migrator
 {
     public class DbUpMigrationStrategy : IMigrationStrategy
     {
@@ -19,17 +19,15 @@ namespace Domain.Data.Framework
 
         public ILogger Logger { get; set; }
 
-        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString)
+        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString, Assembly migrationAssembly)
             where TDbContext : DbContext
             where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
         {
             Logger.Info($"DbContext migration strategy started for {typeof(TDbContext).GetTypeInfo().Name}...");
 
-            string connString = ConnectionStringHelper.GetConnectionString(nameOrConnectionString);
-
             UpgradeEngine upgrader = DeployChanges.To
-                                                  .SqlDatabase(connString)
-                                                  .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                                                  .SqlDatabase(nameOrConnectionString)
+                                                  .WithScriptsEmbeddedInAssembly(migrationAssembly)
                                                   .LogToConsole()
                                                   .WithTransaction()
                                                   .Build();

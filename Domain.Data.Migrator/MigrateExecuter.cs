@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 using Autofac.Extras.IocManager;
 
-using Domain.Data.Framework;
-
 using Stove.Extensions;
+using Stove.Migrator;
 
 namespace Domain.Data.Migrator
 {
