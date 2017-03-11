@@ -47,6 +47,9 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DbUp, Version=3.3.5.0, Culture=neutral, PublicKeyToken=4b419c53bdfd4cbf, processorArchitecture=MSIL">
+      <HintPath>..\packages\dbup.3.3.5\lib\net35\DbUp.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -108,10 +111,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="DataBootstrapper.cs" />
     <Compile Include="DataRegistrationExtensions.cs" />
-    <Compile Include="IStoveDbMigrator.cs" />
+    <Compile Include="Framework\ConnectionStringHelper.cs" />
+    <Compile Include="Framework\DbContextMigrationStrategy.cs" />
+    <Compile Include="Framework\DbUpMigrationStrategy.cs" />
+    <Compile Include="Framework\IMigrationStrategy.cs" />
+    <Compile Include="Framework\IStoveDbMigrator.cs" />
+    <Compile Include="Framework\StoveDbMigrator.cs" />
     <Compile Include="Migrations\SampleDbContext2StoveDbMigrator.cs" />
     <Compile Include="Migrations\SampleDbContext2\201703101922037_InitialDatabaseCreation.cs" />
     <Compile Include="Migrations\SampleDbContext2\201703101922037_InitialDatabaseCreation.Designer.cs">
@@ -132,7 +139,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbContexes\SampleDbContext.cs" />
     <Compile Include="DbContexes\SampleDbContext2.cs" />
-    <Compile Include="StoveDbMigrator.cs" />
+    <EmbeddedResource Include="Scripts\Script0001 - InserProduct_Jean.sql" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +160,7 @@
       <DependentUpon>201703102306271_AlterSp_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

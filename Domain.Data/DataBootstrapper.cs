@@ -6,7 +6,7 @@ namespace Domain.Data
 {
     public class DataBootstrapper : StoveBootstrapper
     {
-        public override void Start()
+        public override void PreStart()
         {
             Configuration.DefaultNameOrConnectionString = "Default";
             Configuration.TypedConnectionStrings.Add(typeof(SampleDbContext), "Default");

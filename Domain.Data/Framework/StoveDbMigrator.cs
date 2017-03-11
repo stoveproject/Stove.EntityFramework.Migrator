@@ -1,26 +1,30 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using System.Transactions;
 
 using Autofac.Extras.IocManager;
 
 using Stove.Domain.Uow;
+using Stove.Extensions;
 
-namespace Domain.Data
+namespace Domain.Data.Framework
 {
     public abstract class StoveDbMigrator<TDbContext, TConfiguration> : IStoveDbMigrator, ITransientDependency
         where TDbContext : DbContext
         where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
     {
         private readonly IConnectionStringResolver _connectionStringResolver;
-        private readonly IScopeResolver _resolver;
+        private readonly IEnumerable<IMigrationStrategy> _migrationStrategies;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        protected StoveDbMigrator(IUnitOfWorkManager unitOfWorkManager, IScopeResolver resolver, IConnectionStringResolver connectionStringResolver)
+        protected StoveDbMigrator(
+            IConnectionStringResolver connectionStringResolver,
+            IUnitOfWorkManager unitOfWorkManager,
+            IEnumerable<IMigrationStrategy> migrationStrategies)
         {
-            _unitOfWorkManager = unitOfWorkManager;
-            _resolver = resolver;
             _connectionStringResolver = connectionStringResolver;
+            _unitOfWorkManager = unitOfWorkManager;
+            _migrationStrategies = migrationStrategies;
             CurrentDbContextName = typeof(TDbContext).FullName;
             CurrentDbConfigurationName = typeof(TConfiguration).FullName;
         }
@@ -33,18 +37,15 @@ namespace Domain.Data
 
             string nameOrConnectionString = _connectionStringResolver.GetNameOrConnectionString(args);
 
-            using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin(TransactionScopeOption.Suppress))
+            using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin())
             {
-                using (IScopeResolver scope = _resolver.BeginScope())
+                _migrationStrategies.ForEach(strategy =>
                 {
-                    var dbContext = scope.Resolve<TDbContext>(new { nameOrConnectionString });
-                    var dbInitializer = new MigrateDatabaseToLatestVersion<TDbContext, TConfiguration>(true, new TConfiguration());
+                    strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString);
+                });
 
-                    dbInitializer.InitializeDatabase(dbContext);
-
-                    _unitOfWorkManager.Current.SaveChanges();
-                    uow.Complete();
-                }
+                _unitOfWorkManager.Current.SaveChanges();
+                uow.Complete();
             }
         }
 
