@@ -86,9 +86,6 @@
     <Reference Include="Stove, Version=1.0.117.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stove.0.1.0\lib\net452\Stove.dll</HintPath>
     </Reference>
-    <Reference Include="Stove.EntityFramework, Version=1.0.117.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stove.EntityFramework.0.1.0\lib\net452\Stove.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>

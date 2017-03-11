@@ -7,6 +7,7 @@ using CommandLine;
 using HibernatingRhinos.Profiler.Appender.EntityFramework;
 
 using Stove;
+using Stove.EntityFramework;
 using Stove.NLog;
 
 namespace Domain.Data.Migrator
@@ -21,6 +22,7 @@ namespace Domain.Data.Migrator
                                             .UseAutofacContainerBuilder()
                                             .UseStoveWithNullables(typeof(StoveMigratorBootstrapper))
                                             .UseStoveNLog()
+                                            .UseStoveEntityFramework()
                                             .UseStoveMigrationParticipant()
                                             .UseStoveMigrator();
 
