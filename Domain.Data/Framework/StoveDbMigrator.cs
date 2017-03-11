@@ -23,7 +23,6 @@ namespace Domain.Data.Framework
             IEnumerable<IMigrationStrategy> migrationStrategies)
         {
             _connectionStringResolver = connectionStringResolver;
-
             _unitOfWorkManager = unitOfWorkManager;
             _migrationStrategies = migrationStrategies;
             CurrentDbContextName = typeof(TDbContext).FullName;
@@ -40,7 +39,10 @@ namespace Domain.Data.Framework
 
             using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin())
             {
-                _migrationStrategies.ForEach(strategy => strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString));
+                _migrationStrategies.ForEach(strategy =>
+                {
+                    strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString);
+                });
 
                 _unitOfWorkManager.Current.SaveChanges();
                 uow.Complete();

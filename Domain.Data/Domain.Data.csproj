@@ -111,13 +111,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\ConnectionStringHelper.cs" />
     <Compile Include="DataBootstrapper.cs" />
     <Compile Include="DataRegistrationExtensions.cs" />
+    <Compile Include="Framework\ConnectionStringHelper.cs" />
     <Compile Include="Framework\DbContextMigrationStrategy.cs" />
     <Compile Include="Framework\DbUpMigrationStrategy.cs" />
     <Compile Include="Framework\IMigrationStrategy.cs" />
     <Compile Include="Framework\IStoveDbMigrator.cs" />
+    <Compile Include="Framework\StoveDbMigrator.cs" />
     <Compile Include="Migrations\SampleDbContext2StoveDbMigrator.cs" />
     <Compile Include="Migrations\SampleDbContext2\201703101922037_InitialDatabaseCreation.cs" />
     <Compile Include="Migrations\SampleDbContext2\201703101922037_InitialDatabaseCreation.Designer.cs">
@@ -139,7 +140,6 @@
     <Compile Include="DbContexes\SampleDbContext.cs" />
     <Compile Include="DbContexes\SampleDbContext2.cs" />
     <EmbeddedResource Include="Scripts\Script0001 - InserProduct_Jean.sql" />
-    <Compile Include="Framework\StoveDbMigrator.cs" />
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>

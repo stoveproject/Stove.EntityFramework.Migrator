@@ -138,8 +138,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataMigratorBootstrapper.cs" />
-    <Compile Include="DataMigratorRegistrationExtensions.cs" />
+    <Compile Include="StoveMigratorBootstrapper.cs" />
+    <Compile Include="StoveMigratorRegistrationExtensions.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MigrateExecuter.cs" />
     <Compile Include="MigrationType.cs" />

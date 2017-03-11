@@ -4,7 +4,7 @@ namespace Domain.Data.Migrator
 {
     [DependsOn(
         typeof(DataBootstrapper))]
-    public class DataMigratorBootstrapper : StoveBootstrapper
+    public class StoveMigratorBootstrapper : StoveBootstrapper
     {
     }
 }
