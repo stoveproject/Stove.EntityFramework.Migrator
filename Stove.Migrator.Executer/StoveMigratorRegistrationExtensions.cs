@@ -3,9 +3,8 @@
 using Autofac.Extras.IocManager;
 
 using Stove.EntityFramework;
-using Stove.Migrator;
 
-namespace Domain.Data.Migrator
+namespace Stove.Migrator.Executer
 {
     public static class StoveMigratorRegistrationExtensions
     {

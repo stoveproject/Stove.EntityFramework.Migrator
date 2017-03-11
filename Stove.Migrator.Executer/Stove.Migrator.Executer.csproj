@@ -7,8 +7,8 @@
     <ProjectGuid>{C169861E-9DB6-4FEC-B50C-72D6D43D1BE0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain.Data.Migrator</RootNamespace>
-    <AssemblyName>Domain.Data.Migrator</AssemblyName>
+    <RootNamespace>Stove.Migrator.Executer</RootNamespace>
+    <AssemblyName>Stove.Migrator.Executer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -47,7 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Domain.Data.Migrator.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">

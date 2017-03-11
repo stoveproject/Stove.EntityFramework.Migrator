@@ -2,7 +2,7 @@
 
 using CommandLine;
 
-namespace Domain.Data.Migrator
+namespace Stove.Migrator.Executer
 {
     public class MigrationOptions
     {

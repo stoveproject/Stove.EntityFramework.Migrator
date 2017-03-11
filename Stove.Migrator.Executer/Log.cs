@@ -5,7 +5,7 @@ using Autofac.Extras.IocManager;
 using Stove.Log;
 using Stove.Timing;
 
-namespace Domain.Data.Migrator
+namespace Stove.Migrator.Executer
 {
     public class Log : ITransientDependency
     {

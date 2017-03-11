@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Data", "Domain.Data\Domain.Data.csproj", "{FC236B8E-7BDB-4A9A-8DDD-781A281FE49F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Data.Migrator", "Domain.Data.Migrator\Domain.Data.Migrator.csproj", "{C169861E-9DB6-4FEC-B50C-72D6D43D1BE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stove.Migrator.Executer", "Stove.Migrator.Executer\Stove.Migrator.Executer.csproj", "{C169861E-9DB6-4FEC-B50C-72D6D43D1BE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stove.Migrator", "Stove.Migrator\Stove.Migrator.csproj", "{8CDBBE30-5E13-4266-908B-B5BD9D39C336}"
 EndProject

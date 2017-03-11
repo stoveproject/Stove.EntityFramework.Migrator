@@ -1,6 +1,8 @@
-﻿using Stove.Bootstrapping;
+﻿using Domain.Data;
 
-namespace Domain.Data.Migrator
+using Stove.Bootstrapping;
+
+namespace Stove.Migrator.Executer
 {
     [DependsOn(
         typeof(DataBootstrapper))]

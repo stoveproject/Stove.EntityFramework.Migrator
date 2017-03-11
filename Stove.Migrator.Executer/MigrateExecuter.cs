@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Autofac.Extras.IocManager;
 
 using Stove.Extensions;
-using Stove.Migrator;
 
-namespace Domain.Data.Migrator
+namespace Stove.Migrator.Executer
 {
     public class MigrateExecuter : ITransientDependency
     {

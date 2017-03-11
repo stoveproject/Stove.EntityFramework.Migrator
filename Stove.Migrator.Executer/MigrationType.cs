@@ -1,4 +1,4 @@
-﻿namespace Domain.Data.Migrator
+﻿namespace Stove.Migrator.Executer
 {
     public enum MigrationType
     {

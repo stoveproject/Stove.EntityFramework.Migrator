@@ -4,13 +4,14 @@ using Autofac.Extras.IocManager;
 
 using CommandLine;
 
+using Domain.Data;
+
 using HibernatingRhinos.Profiler.Appender.EntityFramework;
 
-using Stove;
 using Stove.EntityFramework;
 using Stove.NLog;
 
-namespace Domain.Data.Migrator
+namespace Stove.Migrator.Executer
 {
     public class Program
     {
