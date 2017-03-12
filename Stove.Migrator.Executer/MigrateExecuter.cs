@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Autofac.Extras.IocManager;
 
@@ -21,16 +22,20 @@ namespace Stove.Migrator.Executer
 
         public void Run()
         {
-            Log.Write("Database migrations started...");
+            Log.Write("Database migrations starting...");
             Log.Write("--------------------------------------------------------");
 
             try
             {
+                Log.Write($"Founded DbContext migration count: {_stoveDbMigrators.Count()}");
+
                 _stoveDbMigrators.ForEach(migrator =>
                 {
-                    Log.Write($"DbContext: {migrator.CurrentDbContextName} migration started with {migrator.CurrentDbConfigurationName} configuration...");
-                    migrator.CreateOrMigrate();
-                    Log.Write($"DbContext: {migrator.CurrentDbContextName} migration finished with {migrator.CurrentDbConfigurationName} configuration");
+                    Log.Write($"DbContext: {migrator.CurrentDbContextName} migration starting with Configuration: {migrator.CurrentDbConfigurationName}...");
+
+                    migrator.CreateOrMigrate(Log.Write);
+
+                    Log.Write($"DbContext: {migrator.CurrentDbContextName} migration finished successfully with Configuration: {migrator.CurrentDbConfigurationName}.");
                 });
             }
             catch (Exception exception)
@@ -42,7 +47,7 @@ namespace Stove.Migrator.Executer
             }
 
             Log.Write("--------------------------------------------------------");
-            Log.Write("All Database migrations finished...");
+            Log.Write("All Database migrations finished successfully...");
         }
     }
 }

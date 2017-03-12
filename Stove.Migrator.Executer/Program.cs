@@ -32,14 +32,20 @@ namespace Stove.Migrator.Executer
             {
                 if (options.Is(MigrationType.DbUp))
                 {
+                    Console.WriteLine("Selected Migration is only DbUp...");
+
                     builder.UseStoveDbUpMigrationStrategy();
                 }
                 else if (options.Is(MigrationType.DbContext))
                 {
+                    Console.WriteLine("Selected Migration is only DbContext...");
+
                     builder.UseStoveDbContextMigrationStrategy();
                 }
                 else
                 {
+                    Console.WriteLine("Selected Migration is DbContext and DbUp both...");
+
                     builder.UseStoveAllMigrationStrategies();
                 }
             }

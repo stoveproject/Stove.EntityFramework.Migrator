@@ -1,10 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
 
 using Autofac.Extras.IocManager;
-
-using Stove.Log;
 
 namespace Stove.Migrator
 {
@@ -15,16 +14,13 @@ namespace Stove.Migrator
         public DbContextMigrationStrategy(IScopeResolver resolver)
         {
             _resolver = resolver;
-            Logger = NullLogger.Instance;
         }
 
-        public ILogger Logger { get; set; }
-
-        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString, Assembly migrationAssembly = null)
+        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString, Assembly migrationAssembly, Action<string> logger)
             where TDbContext : DbContext
             where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
         {
-            Logger.Info($"DbContext migration strategy started for {typeof(TDbContext).GetTypeInfo().Name}...");
+            logger($"MigrationType: DbContext strategy starting for {typeof(TDbContext).GetTypeInfo().Name}...");
 
             using (IScopeResolver scope = _resolver.BeginScope())
             {
@@ -34,7 +30,7 @@ namespace Stove.Migrator
                 dbInitializer.InitializeDatabase(dbContext);
             }
 
-            Logger.Info($"DbContext migration strategy finished for {typeof(TDbContext).GetTypeInfo().Name}...");
+            logger($"MigrationType: DbContext strategy succesfully finished for {typeof(TDbContext).GetTypeInfo().Name}.");
         }
     }
 }

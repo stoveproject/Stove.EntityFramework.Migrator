@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Reflection;
@@ -6,26 +7,17 @@ using System.Reflection;
 using DbUp;
 using DbUp.Engine;
 
-using Stove.Log;
-
 namespace Stove.Migrator
 {
     public class DbUpMigrationStrategy : IMigrationStrategy
     {
         private const string DpUpScriptsFolderName = "Scripts";
 
-        public DbUpMigrationStrategy()
-        {
-            Logger = NullLogger.Instance;
-        }
-
-        public ILogger Logger { get; set; }
-
-        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString, Assembly migrationAssembly)
+        public void Migrate<TDbContext, TConfiguration>(string nameOrConnectionString, Assembly migrationAssembly, Action<string> logger)
             where TDbContext : DbContext
             where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
         {
-            Logger.Info($"DbContext migration strategy started for {typeof(TDbContext).GetTypeInfo().Name}...");
+            logger($"MigrationType: DbUp strategy starting for {typeof(TDbContext).GetTypeInfo().Name}...");
 
             string scriptPrefix = $"{migrationAssembly.GetName().Name}.{DpUpScriptsFolderName}.{typeof(TDbContext).GetTypeInfo().Name}";
 
@@ -43,7 +35,7 @@ namespace Stove.Migrator
                 throw new DbUpdateException(result.Error.Message, result.Error);
             }
 
-            Logger.Info($"DbContext migration strategy finished for {typeof(TDbContext).GetTypeInfo().Name}...");
+            logger($"MigrationType: DbUp strategy finished for {typeof(TDbContext).GetTypeInfo().Name}.");
         }
     }
 }

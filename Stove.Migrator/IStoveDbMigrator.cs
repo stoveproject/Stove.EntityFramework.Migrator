@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Stove.Migrator
 {
@@ -10,6 +11,6 @@ namespace Stove.Migrator
 
         Assembly MigrationAssembly { get; }
 
-        void CreateOrMigrate();
+        void CreateOrMigrate(Action<string> logger);
     }
 }

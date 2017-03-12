@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
@@ -30,7 +31,7 @@ namespace Stove.Migrator
             CurrentDbConfigurationName = typeof(TConfiguration).GetTypeInfo().Name;
         }
 
-        public virtual void CreateOrMigrate()
+        public virtual void CreateOrMigrate(Action<string> logger)
         {
             var args = new ConnectionStringResolveArgs();
             args["DbContextType"] = typeof(TDbContext);
@@ -40,9 +41,14 @@ namespace Stove.Migrator
                 _connectionStringResolver.GetNameOrConnectionString(args)
             );
 
+            logger($"Name or ConnectionString: {nameOrConnectionString}, Current DbContext: {typeof(TDbContext).GetTypeInfo().Name}");
+
             using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin())
             {
-                _migrationStrategies.ForEach(strategy => { strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString, MigrationAssembly); });
+                _migrationStrategies.ForEach(strategy =>
+                {
+                    strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString, MigrationAssembly, logger);
+                });
 
                 _unitOfWorkManager.Current.SaveChanges();
                 uow.Complete();
