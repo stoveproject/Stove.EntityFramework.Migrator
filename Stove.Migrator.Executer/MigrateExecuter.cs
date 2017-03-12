@@ -23,19 +23,18 @@ namespace Stove.Migrator.Executer
         public void Run()
         {
             Log.Write("Database migrations starting...");
-            Log.Write("--------------------------------------------------------");
+            Log.Write($"Founded DbContext migration count: {_stoveDbMigrators.Count()}");
+            Log.Write("-----------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine();
 
             try
             {
-                Log.Write($"Founded DbContext migration count: {_stoveDbMigrators.Count()}");
-
                 _stoveDbMigrators.ForEach(migrator =>
                 {
-                    Log.Write($"DbContext: {migrator.CurrentDbContextName} migration starting with Configuration: {migrator.CurrentDbConfigurationName}...");
-
                     migrator.CreateOrMigrate(Log.Write);
 
-                    Log.Write($"DbContext: {migrator.CurrentDbContextName} migration finished successfully with Configuration: {migrator.CurrentDbConfigurationName}.");
+                    Log.Write("-----------------------------------------------------------------------------------------------------------------");
+                    Console.WriteLine();
                 });
             }
             catch (Exception exception)
@@ -46,7 +45,7 @@ namespace Stove.Migrator.Executer
                 return;
             }
 
-            Log.Write("--------------------------------------------------------");
+            Console.WriteLine();
             Log.Write("All Database migrations finished successfully...");
         }
     }

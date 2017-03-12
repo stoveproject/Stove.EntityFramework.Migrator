@@ -20,7 +20,7 @@ namespace Stove.Migrator
             where TDbContext : DbContext
             where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
         {
-            logger($"MigrationType: DbContext strategy starting for {typeof(TDbContext).GetTypeInfo().Name}...");
+            logger($"MigrationStrategy: DbContext starting for {typeof(TDbContext).GetTypeInfo().Name}...");
 
             using (IScopeResolver scope = _resolver.BeginScope())
             {
@@ -30,7 +30,7 @@ namespace Stove.Migrator
                 dbInitializer.InitializeDatabase(dbContext);
             }
 
-            logger($"MigrationType: DbContext strategy succesfully finished for {typeof(TDbContext).GetTypeInfo().Name}.");
+            logger($"MigrationStrategy: DbContext finished succesfully for {typeof(TDbContext).GetTypeInfo().Name}.");
         }
     }
 }

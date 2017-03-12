@@ -41,13 +41,16 @@ namespace Stove.Migrator
                 _connectionStringResolver.GetNameOrConnectionString(args)
             );
 
-            logger($"Name or ConnectionString: {nameOrConnectionString}, Current DbContext: {typeof(TDbContext).GetTypeInfo().Name}");
+            logger($"Name or ConnectionString: {nameOrConnectionString}\nCurrent DbContext: {typeof(TDbContext).GetTypeInfo().Name}");
 
             using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin())
             {
                 _migrationStrategies.ForEach(strategy =>
                 {
+                    logger("--------------------------------------------------------");
+
                     strategy.Migrate<TDbContext, TConfiguration>(nameOrConnectionString, MigrationAssembly, logger);
+
                 });
 
                 _unitOfWorkManager.Current.SaveChanges();

@@ -17,7 +17,7 @@ namespace Stove.Migrator
             where TDbContext : DbContext
             where TConfiguration : DbMigrationsConfiguration<TDbContext>, new()
         {
-            logger($"MigrationType: DbUp strategy starting for {typeof(TDbContext).GetTypeInfo().Name}...");
+            logger($"MigrationStrategy: DbUp starting for {typeof(TDbContext).GetTypeInfo().Name}...");
 
             string scriptPrefix = $"{migrationAssembly.GetName().Name}.{DpUpScriptsFolderName}.{typeof(TDbContext).GetTypeInfo().Name}";
 
@@ -35,7 +35,7 @@ namespace Stove.Migrator
                 throw new DbUpdateException(result.Error.Message, result.Error);
             }
 
-            logger($"MigrationType: DbUp strategy finished for {typeof(TDbContext).GetTypeInfo().Name}.");
+            logger($"MigrationStrategy: DbUp finished succesfully for {typeof(TDbContext).GetTypeInfo().Name}.");
         }
     }
 }
