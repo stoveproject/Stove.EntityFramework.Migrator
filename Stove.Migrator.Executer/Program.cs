@@ -50,6 +50,11 @@ namespace Stove.Migrator.Executer
                 }
             }
 
+            builder.RegisterServices(r => r.OnDisposing += (sender, eventArgs) =>
+            {
+                Console.WriteLine("Stove.Migrator.Executer successfully executed and disposed.");
+            });
+
             IRootResolver rootResolver = builder.CreateResolver();
 
             using (rootResolver)
