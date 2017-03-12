@@ -1,0 +1,1 @@
+﻿DELETE  FROM dbo.Products WHERE Name = 'Jean'

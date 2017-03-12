@@ -1,0 +1,1 @@
+﻿INSERT INTO dbo.Products ( Name ) VALUES ( N'Jean' )

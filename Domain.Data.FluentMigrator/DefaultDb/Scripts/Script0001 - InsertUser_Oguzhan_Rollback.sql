@@ -1,0 +1,1 @@
+﻿DELETE FROM dbo.Users WHERE Name = 'Oguzhan'

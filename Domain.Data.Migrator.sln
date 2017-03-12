@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stove.Migrator.Executer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stove.Migrator", "Stove.Migrator\Stove.Migrator.csproj", "{8CDBBE30-5E13-4266-908B-B5BD9D39C336}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Data.FluentMigrator", "Domain.Data.FluentMigrator\Domain.Data.FluentMigrator.csproj", "{9C9D463A-19F1-48E4-A685-D33A3B00CAAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8CDBBE30-5E13-4266-908B-B5BD9D39C336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CDBBE30-5E13-4266-908B-B5BD9D39C336}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CDBBE30-5E13-4266-908B-B5BD9D39C336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C9D463A-19F1-48E4-A685-D33A3B00CAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C9D463A-19F1-48E4-A685-D33A3B00CAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C9D463A-19F1-48E4-A685-D33A3B00CAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C9D463A-19F1-48E4-A685-D33A3B00CAAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
