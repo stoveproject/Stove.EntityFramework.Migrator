@@ -1,6 +1,6 @@
 ﻿namespace Domain.Data.FluentMigrator
 {
-    public enum DbContextTypes
+    public enum DatabaseTypes
     {
         OADatabase = 1
     }

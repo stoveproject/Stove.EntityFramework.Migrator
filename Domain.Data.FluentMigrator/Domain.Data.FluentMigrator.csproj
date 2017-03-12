@@ -46,29 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbContextTypes.cs" />
+    <Compile Include="DatabaseTypes.cs" />
     <Compile Include="KnownMigrationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DefaultDb\Mig0003_CreateProductTable.cs" />
-    <Compile Include="DefaultDb\Mig0004_InsertProductTable.cs" />
-    <Compile Include="DefaultDb\Mig0001_CreateUserTable.cs" />
-    <Compile Include="DefaultDb\Mig0002_InsertUserTable.cs" />
+    <Compile Include="OADatabase\Mig0003_CreateProductTable.cs" />
+    <Compile Include="OADatabase\Mig0004_InsertProductTable.cs" />
+    <Compile Include="OADatabase\Mig0001_CreateUserTable.cs" />
+    <Compile Include="OADatabase\Mig0002_InsertUserTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="OADatabase_Migration.bat" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DefaultDb\Scripts\Script0001 - InsertUser_Oguzhan.sql" />
+    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InsertUser_Oguzhan.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DefaultDb\Scripts\Script0001 - InserProduct_Jean.sql" />
+    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InserProduct_Jean.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DefaultDb\Scripts\Script0001 - InsertUser_Oguzhan_Rollback.sql" />
+    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InsertUser_Oguzhan_Rollback.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DefaultDb\Scripts\Script0001 - InserProduct_Jean_Rollback.sql" />
+    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InserProduct_Jean_Rollback.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
