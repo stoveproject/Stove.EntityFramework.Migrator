@@ -46,29 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseTypes.cs" />
     <Compile Include="KnownMigrationAttribute.cs" />
+    <Compile Include="OneAdminDatabase\Mig0003_CreateAddressTable.cs" />
+    <Compile Include="OneAdminDatabase\Mig0004_InsertAddressToUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OADatabase\Mig0003_CreateProductTable.cs" />
-    <Compile Include="OADatabase\Mig0004_InsertProductTable.cs" />
-    <Compile Include="OADatabase\Mig0001_CreateUserTable.cs" />
-    <Compile Include="OADatabase\Mig0002_InsertUserTable.cs" />
+    <Compile Include="NewAdminDatabase\Mig0001_CreateProductTable.cs" />
+    <Compile Include="NewAdminDatabase\Mig0002_InsertProductTable.cs" />
+    <Compile Include="OneAdminDatabase\Mig0001_CreateUserTable.cs" />
+    <Compile Include="OneAdminDatabase\Mig0002_InsertUserTable.cs" />
+    <Compile Include="TagNames.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NewAdmin_MigrationRunner.bat" />
     <None Include="packages.config" />
-    <None Include="OADatabase_Migration.bat" />
+    <None Include="OneAdmin_MigrationRunner.bat" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InsertUser_Oguzhan.sql" />
+    <EmbeddedResource Include="OneAdminDatabase\Scripts\Mig0002_InsertUserTable.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InserProduct_Jean.sql" />
+    <EmbeddedResource Include="NewAdminDatabase\Scripts\Mig0002_InserProductTable.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InsertUser_Oguzhan_Rollback.sql" />
+    <EmbeddedResource Include="OneAdminDatabase\Scripts\Mig0002_InsertUserTable_Rollback.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OADatabase\Scripts\Script0001 - InserProduct_Jean_Rollback.sql" />
+    <EmbeddedResource Include="NewAdminDatabase\Scripts\Mig0002_InserProductTable_Rollback.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
