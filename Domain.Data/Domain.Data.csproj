@@ -99,7 +99,7 @@
   <ItemGroup>
     <Compile Include="DataBootstrapper.cs" />
     <Compile Include="DataRegistrationExtensions.cs" />
-    <Compile Include="Migrations\SampleDbContext2StoveDbMigrator.cs" />
+    <Compile Include="Migrations\SampleDbContext\SampleDbContext2StoveDbMigrator.cs" />
     <Compile Include="Migrations\SampleDbContext2\201703101922037_InitialDatabaseCreation.cs" />
     <Compile Include="Migrations\SampleDbContext2\201703101922037_InitialDatabaseCreation.Designer.cs">
       <DependentUpon>201703101922037_InitialDatabaseCreation.cs</DependentUpon>
@@ -111,7 +111,7 @@
     </Compile>
     <Compile Include="Migrations\SampleDbContext\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Migrations\SampleDbContextStoveDbMigrator.cs" />
+    <Compile Include="Migrations\SampleDbContext2\SampleDbContextStoveDbMigrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DbContexes\SampleDbContext.cs" />
     <Compile Include="DbContexes\SampleDbContext2.cs" />
