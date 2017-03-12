@@ -4,7 +4,7 @@ namespace Domain.Data.FluentMigrator.OneAdminDatabase
 {
     [Tags(TagNames.Database.OneAdminDatabase)]
     [Tags(TagNames.Environment.Dev, TagNames.Environment.Stage, TagNames.Environment.Production)]
-    [KnownMigration(201703121434, "OAT1-0001")]
+    [KnownMigration("Oguzhan Soykan", "OAT1-0001", typeof(Mig0002_InsertUserTable), 2017, 03, 12, 18, 32)]
     public class Mig0002_InsertUserTable : Migration
     {
         public override void Up()

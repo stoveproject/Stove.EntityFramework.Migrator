@@ -5,7 +5,7 @@ namespace Domain.Data.FluentMigrator.NewAdminDatabase
     [Tags(TagNames.Database.NewAdminDatabase)]
     [Tags(TagNames.Environment.Production)]
     [Tags(TagNames.Country.Italy)]
-    [KnownMigration(201703121510, "NEWADM-0002")]
+    [KnownMigration("Oguzhan Soykan", "NEWADM-0001", typeof(Mig0002_InsertProductTable), 2017, 03, 12, 18, 32)]
     public class Mig0002_InsertProductTable : Migration
     {
         public override void Up()
