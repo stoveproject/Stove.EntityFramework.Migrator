@@ -1,4 +1,4 @@
-﻿namespace Stove.Migrator.Executer
+﻿namespace Stove
 {
     public enum MigrationType
     {
