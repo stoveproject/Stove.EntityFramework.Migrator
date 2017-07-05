@@ -98,11 +98,19 @@
   <ItemGroup>
     <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="DbContextMigrationStrategy.cs" />
+    <Compile Include="DbContextSeedMigrationStrategy.cs" />
     <Compile Include="DbUpMigrationStrategy.cs" />
     <Compile Include="IMigrationStrategy.cs" />
     <Compile Include="IStoveDbMigrator.cs" />
+    <Compile Include="MigrateDatabaseToLastVersion.cs" />
+    <Compile Include="Migrations\StoveTestMigration.cs" />
+    <Compile Include="Versioning\StoveVersionInfoConfiguration.cs" />
     <Compile Include="StoveDbMigrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoveMigration.cs" />
+    <Compile Include="Versioning\IVersionInfoConfiguration.cs" />
+    <Compile Include="Versioning\StoveVersionInfoAttribute.cs" />
+    <Compile Include="Versioning\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -42,18 +42,25 @@ namespace Stove.Migrator.Executer
 
                     builder.UseStoveDbContextMigrationStrategy();
                 }
+                else if (options.Is(MigrationType.DbContextSeed))
+                {
+                    Console.WriteLine("Selected Migration is only DbContextSeed...");
+
+                    builder.UseStoveDbContextSeedMigrationStrategy(new StoveVersionInfoConfiguration
+                        (options.MigrationPersistentStorageDbContext, options.Schema, options.Table)
+                    );
+                }
                 else
                 {
                     Console.WriteLine("Selected Migration is DbContext and DbUp both...");
 
-                    builder.UseStoveAllMigrationStrategies();
+                    builder.UseStoveAllMigrationStrategies(new StoveVersionInfoConfiguration
+                        (options.MigrationPersistentStorageDbContext, options.Schema, options.Table)
+                    );
                 }
             }
 
-            builder.RegisterServices(r => r.OnDisposing += (sender, eventArgs) =>
-            {
-                Console.WriteLine("Stove.Migrator.Executer successfully executed and disposed.");
-            });
+            builder.RegisterServices(r => r.OnDisposing += (sender, eventArgs) => { Console.WriteLine("Stove.Migrator.Executer successfully executed and disposed."); });
 
             IRootResolver rootResolver = builder.CreateResolver();
 
