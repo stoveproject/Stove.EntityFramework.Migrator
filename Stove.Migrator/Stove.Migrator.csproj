@@ -90,6 +90,7 @@
     <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -98,11 +99,20 @@
   <ItemGroup>
     <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="DbContextMigrationStrategy.cs" />
+    <Compile Include="DbContextSeedMigrationStrategy.cs" />
     <Compile Include="DbUpMigrationStrategy.cs" />
     <Compile Include="IMigrationStrategy.cs" />
     <Compile Include="IStoveDbMigrator.cs" />
+    <Compile Include="IStoveMigration.cs" />
+    <Compile Include="StoveDbContextMigration.cs" />
+    <Compile Include="StoveMigratorRegistrationExtensions.cs" />
+    <Compile Include="Versioning\StoveStoveVersionInfoConfiguration.cs" />
     <Compile Include="StoveDbMigrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoveMigration.cs" />
+    <Compile Include="Versioning\IStoveVersionInfoConfiguration.cs" />
+    <Compile Include="Versioning\StoveVersionInfoAttribute.cs" />
+    <Compile Include="Versioning\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

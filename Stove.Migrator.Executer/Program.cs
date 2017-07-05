@@ -25,7 +25,8 @@ namespace Stove.Migrator.Executer
                                             .UseStoveNLog()
                                             .UseStoveEntityFramework()
                                             .UseStoveMigrationParticipant()
-                                            .UseStoveMigrator();
+                                            .UseStoveMigrator()
+                                            .UseStoveMigratorDefaults();
 
             var options = new MigrationOptions();
             if (Parser.Default.ParseArguments(args, options))
@@ -42,18 +43,31 @@ namespace Stove.Migrator.Executer
 
                     builder.UseStoveDbContextMigrationStrategy();
                 }
+                else if (options.Is(MigrationType.DbContextSeed))
+                {
+                    Console.WriteLine("Selected Migration is only DbContextSeed...");
+
+                    builder.UseStoveDbContextSeedMigrationStrategy(configuration =>
+                    {
+                        configuration.Schema = options.Schema;
+                        configuration.Table = options.Table;
+                        return configuration;
+                    });
+                }
                 else
                 {
-                    Console.WriteLine("Selected Migration is DbContext and DbUp both...");
+                    Console.WriteLine("Selected Migration is DbContext, DbUp and DbContextSeed...");
 
-                    builder.UseStoveAllMigrationStrategies();
+                    builder.UseStoveAllMigrationStrategies(configuration =>
+                    {
+                        configuration.Schema = options.Schema;
+                        configuration.Table = options.Table;
+                        return configuration;
+                    });
                 }
             }
 
-            builder.RegisterServices(r => r.OnDisposing += (sender, eventArgs) =>
-            {
-                Console.WriteLine("Stove.Migrator.Executer successfully executed and disposed.");
-            });
+            builder.RegisterServices(r => r.OnDisposing += (sender, eventArgs) => { Console.WriteLine("Stove.Migrator.Executer successfully executed and disposed."); });
 
             IRootResolver rootResolver = builder.CreateResolver();
 
