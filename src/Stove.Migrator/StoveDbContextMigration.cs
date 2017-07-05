@@ -6,10 +6,10 @@ using System.Linq;
 
 using Autofac.Extras.IocManager;
 
-using Stove.Migrator.Versioning;
 using Stove.Timing;
+using Stove.Versioning;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public class StoveDbContextMigration<TDbContext> : ITransientDependency where TDbContext : DbContext
     {

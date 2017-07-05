@@ -9,7 +9,7 @@ using Autofac.Extras.IocManager;
 using Stove.Domain.Uow;
 using Stove.Extensions;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public abstract class StoveDbMigrator<TDbContext, TConfiguration> : IStoveDbMigrator, ITransientDependency
         where TDbContext : DbContext

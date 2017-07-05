@@ -3,7 +3,7 @@
 using Autofac;
 using Autofac.Extras.IocManager;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public static class StoveMigratorRegistrationExtensions
     {

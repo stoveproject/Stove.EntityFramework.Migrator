@@ -4,9 +4,9 @@ using Autofac.Extras.IocManager;
 
 using CommandLine;
 
-using Domain.Data;
-
 using HibernatingRhinos.Profiler.Appender.EntityFramework;
+
+using Stove.Migrator.Tests.Domain;
 
 namespace Stove.Migrator.Executer
 {

@@ -1,4 +1,4 @@
-﻿namespace Stove.Migrator
+﻿namespace Stove
 {
     public interface IStoveMigration
     {

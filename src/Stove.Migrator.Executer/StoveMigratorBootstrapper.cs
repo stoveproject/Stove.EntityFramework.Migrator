@@ -1,9 +1,8 @@
 ﻿using System;
 
-using Domain.Data;
-
 using Stove.Bootstrapping;
-using Stove.Migrator.Versioning;
+using Stove.Migrator.Tests.Domain;
+using Stove.Versioning;
 
 namespace Stove.Migrator.Executer
 {

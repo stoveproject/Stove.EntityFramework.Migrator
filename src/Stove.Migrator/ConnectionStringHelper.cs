@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public static class ConnectionStringHelper
     {

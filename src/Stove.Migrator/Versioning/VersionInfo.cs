@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Stove.Domain.Entities;
 
-namespace Stove.Migrator.Versioning
+namespace Stove.Versioning
 {
     [Table("VersionInfo")]
     public class VersionInfo : Entity

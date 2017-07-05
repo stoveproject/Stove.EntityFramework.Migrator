@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stove.Migrator.Versioning
+namespace Stove.Versioning
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class StoveVersionInfoAttribute : Attribute

@@ -1,8 +1,6 @@
 ﻿using Autofac.Extras.IocManager;
 
-using Stove.Migrator.Versioning;
-
-namespace Stove.Migrator
+namespace Stove.Versioning
 {
     public class StoveStoveVersionInfoConfiguration : IStoveVersionInfoConfiguration, ISingletonDependency
     {

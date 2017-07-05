@@ -1,21 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props"></Import>
-  
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <RootNamespace>Stove</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="dbup" Version="3.3.5" />
     <PackageReference Include="EntityFramework" Version="6.1.3" />
     <PackageReference Include="Stove" Version="1.1.2" />
-    <PackageReference Include="Stove.EntityFramework" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Configuration" />
+    <ProjectReference Include="..\..\src\Stove.Migrator\Stove.Migrator.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Autofac.Extras.IocManager;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public abstract class StoveMigration : IStoveMigration, ITransientDependency
     {

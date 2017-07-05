@@ -1,4 +1,4 @@
-﻿namespace Stove.Migrator.Versioning
+﻿namespace Stove.Versioning
 {
     public interface IStoveVersionInfoConfiguration
     {

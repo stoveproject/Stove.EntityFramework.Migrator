@@ -7,7 +7,7 @@ using System.Reflection;
 using DbUp;
 using DbUp.Engine;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public class DbUpMigrationStrategy : IMigrationStrategy
     {

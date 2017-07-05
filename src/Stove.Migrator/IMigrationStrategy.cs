@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
 
-namespace Stove.Migrator
+namespace Stove
 {
     public interface IMigrationStrategy
     {
