@@ -1,12 +1,18 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using Stove.Domain.Entities;
 
 namespace Stove.Migrator.Versioning
 {
+    [Table("VersionInfo")]
     public class VersionInfo : Entity
     {
-        public VersionInfo(string version, DateTime appliedOn, string description)
+        protected VersionInfo()
+        {
+        }
+
+        public VersionInfo(string version, DateTime appliedOn, string description) : this()
         {
             Version = version;
             AppliedOn = appliedOn;

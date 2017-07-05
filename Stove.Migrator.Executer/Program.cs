@@ -25,7 +25,8 @@ namespace Stove.Migrator.Executer
                                             .UseStoveNLog()
                                             .UseStoveEntityFramework()
                                             .UseStoveMigrationParticipant()
-                                            .UseStoveMigrator();
+                                            .UseStoveMigrator()
+                                            .UseStoveMigratorDefaults();
 
             var options = new MigrationOptions();
             if (Parser.Default.ParseArguments(args, options))
@@ -46,17 +47,23 @@ namespace Stove.Migrator.Executer
                 {
                     Console.WriteLine("Selected Migration is only DbContextSeed...");
 
-                    builder.UseStoveDbContextSeedMigrationStrategy(new StoveVersionInfoConfiguration
-                        (options.MigrationPersistentStorageDbContext, options.Schema, options.Table)
-                    );
+                    builder.UseStoveDbContextSeedMigrationStrategy(configuration =>
+                    {
+                        configuration.Schema = options.Schema;
+                        configuration.Table = options.Table;
+                        return configuration;
+                    });
                 }
                 else
                 {
-                    Console.WriteLine("Selected Migration is DbContext and DbUp both...");
+                    Console.WriteLine("Selected Migration is DbContext, DbUp and DbContextSeed...");
 
-                    builder.UseStoveAllMigrationStrategies(new StoveVersionInfoConfiguration
-                        (options.MigrationPersistentStorageDbContext, options.Schema, options.Table)
-                    );
+                    builder.UseStoveAllMigrationStrategies(configuration =>
+                    {
+                        configuration.Schema = options.Schema;
+                        configuration.Table = options.Table;
+                        return configuration;
+                    });
                 }
             }
 

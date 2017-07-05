@@ -2,7 +2,7 @@
 
 namespace Stove.Migrator
 {
-    public abstract class StoveMigration : ITransientDependency
+    public abstract class StoveMigration : IStoveMigration, ITransientDependency
     {
         public abstract void Execute();
     }

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 using Autofac.Extras.IocManager;
 
@@ -27,22 +28,22 @@ namespace Stove.Migrator.Executer
             return builder.RegisterServices(r => { r.Register<IMigrationStrategy, DbUpMigrationStrategy>(); });
         }
 
-        public static IIocBuilder UseStoveDbContextSeedMigrationStrategy(this IIocBuilder builder, StoveVersionInfoConfiguration configuration)
+        public static IIocBuilder UseStoveDbContextSeedMigrationStrategy(this IIocBuilder builder, Func<IStoveVersionInfoConfiguration, IStoveVersionInfoConfiguration> configurationAction)
         {
             return builder.RegisterServices(r =>
             {
-                r.Register<IVersionInfoConfiguration, StoveVersionInfoConfiguration>(configuration);
+                r.Register(ctx => configurationAction);
                 r.Register<IMigrationStrategy, DbContextSeedMigrationStrategy>();
             });
         }
 
-        public static IIocBuilder UseStoveAllMigrationStrategies(this IIocBuilder builder, StoveVersionInfoConfiguration configuration)
+        public static IIocBuilder UseStoveAllMigrationStrategies(this IIocBuilder builder, Func<IStoveVersionInfoConfiguration, IStoveVersionInfoConfiguration> configurationAction)
         {
             return builder.RegisterServices(r =>
             {
+                r.Register(ctx => configurationAction);
                 r.Register<IMigrationStrategy, DbContextMigrationStrategy>();
                 r.Register<IMigrationStrategy, DbUpMigrationStrategy>();
-                r.Register<IVersionInfoConfiguration, StoveVersionInfoConfiguration>(configuration, Lifetime.Singleton);
                 r.Register<IMigrationStrategy, DbContextSeedMigrationStrategy>();
             });
         }

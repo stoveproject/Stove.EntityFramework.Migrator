@@ -24,7 +24,7 @@ namespace Stove.Migrator
 
             using (IScopeResolver scope = _resolver.BeginScope())
             {
-                var dbInitializer = scope.Resolve<MigrateDatabaseToLastVersion<TDbContext>>();
+                var dbInitializer = scope.Resolve<StoveDbContextMigration<TDbContext>>();
                 dbInitializer.InitializeDatabase(logger);
             }
 
