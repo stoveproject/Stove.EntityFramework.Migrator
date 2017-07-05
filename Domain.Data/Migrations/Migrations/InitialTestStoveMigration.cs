@@ -5,7 +5,7 @@ using Stove.Migrator.Versioning;
 
 namespace Domain.Data.Migrations.Migrations
 {
-    [StoveVersionInfo(version:"201705071543", author:"Ayberk CANTÜRK", description:"Initial Test Stove Migration")]
+    [StoveVersionInfo(author: "Ayberk CANTÜRK", description: "Initial Test Stove Migration", version: "201705071543")]
     public class InitialTestStoveMigration : StoveMigration
     {
         public override void Execute()

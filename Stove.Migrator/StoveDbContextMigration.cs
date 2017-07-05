@@ -8,6 +8,7 @@ using Autofac.Extras.IocManager;
 
 using Stove.Domain.Uow;
 using Stove.Migrator.Versioning;
+using Stove.Timing;
 
 namespace Stove.Migrator
 {
@@ -66,7 +67,7 @@ namespace Stove.Migrator
                         try
                         {
                             var versionInfo = new VersionInfo(
-                                attribute.GetVersion(), DateTime.UtcNow,
+                                attribute.GetVersion(), Clock.Now,
                                 $"Author: {attribute.GetAuthor()}, Description: {attribute.GetDescription()}"
                             );
 

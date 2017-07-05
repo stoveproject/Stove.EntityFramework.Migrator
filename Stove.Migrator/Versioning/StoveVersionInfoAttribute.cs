@@ -5,7 +5,7 @@ namespace Stove.Migrator.Versioning
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
     public class StoveVersionInfoAttribute : Attribute
     {
-        public StoveVersionInfoAttribute(string version, string author, string description)
+        public StoveVersionInfoAttribute(string author, string description, string version)
         {
             Version = version;
             Author = author;
