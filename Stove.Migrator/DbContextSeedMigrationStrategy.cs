@@ -25,7 +25,7 @@ namespace Stove.Migrator
             using (IScopeResolver scope = _resolver.BeginScope())
             {
                 var dbInitializer = scope.Resolve<StoveDbContextMigration<TDbContext>>();
-                dbInitializer.InitializeDatabase(logger);
+                dbInitializer.Migrate(logger);
             }
 
             logger($"MigrationStrategy: DbContext finished succesfully for {typeof(TDbContext).GetTypeInfo().Name}.");

@@ -6,7 +6,6 @@ using System.Linq;
 
 using Autofac.Extras.IocManager;
 
-using Stove.Domain.Uow;
 using Stove.Migrator.Versioning;
 using Stove.Timing;
 
@@ -17,20 +16,18 @@ namespace Stove.Migrator
         private readonly IStoveVersionInfoConfiguration _configuration;
         private readonly IScopeResolver _resolver;
         private readonly IEnumerable<IStoveMigration> _stoveMigrations;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public StoveDbContextMigration(IScopeResolver resolver,
-            IUnitOfWorkManager unitOfWorkManager,
             IStoveVersionInfoConfiguration configuration,
             IEnumerable<IStoveMigration> stoveMigrations)
         {
             _resolver = resolver;
-            _unitOfWorkManager = unitOfWorkManager;
+
             _configuration = configuration;
             _stoveMigrations = stoveMigrations;
         }
 
-        public void InitializeDatabase(Action<string> logger = null)
+        public void Migrate(Action<string> logger = null)
         {
             var dbContextHasVersionInfo = _resolver.Resolve<TDbContext>();
 
@@ -62,20 +59,18 @@ namespace Stove.Migrator
 
                 if (attribute != null && existingVersionInfos.All(x => x.Version != attribute.GetVersion()))
                 {
-                    using (IUnitOfWorkCompleteHandle uow = _unitOfWorkManager.Begin())
+                    try
                     {
-                        try
-                        {
-                            var versionInfo = new VersionInfo(
-                                attribute.GetVersion(), Clock.Now,
-                                $"Author: {attribute.GetAuthor()}, Description: {attribute.GetDescription()}"
-                            );
+                        var versionInfo = new VersionInfo(
+                            attribute.GetVersion(), Clock.Now,
+                            $"Author: {attribute.GetAuthor()}, Description: {attribute.GetDescription()}"
+                        );
 
-                            logger?.Invoke($"Migration is runing with following VersionInfo details: Version: {versionInfo.Version} AppliedOn: {versionInfo.AppliedOn} Author: {versionInfo.Description}");
+                        logger?.Invoke($"Migration is runing with following VersionInfo details: Version: {versionInfo.Version} AppliedOn: {versionInfo.AppliedOn} Author: {versionInfo.Description}");
 
-                            migration.Execute();
+                        migration.Execute();
 
-                            dbContextHasVersionInfo.Database.ExecuteSqlCommand($@"
+                        dbContextHasVersionInfo.Database.ExecuteSqlCommand($@"
                                                 INSERT INTO [{_configuration.Schema}].[{_configuration.Table}]
                                                                ([Version]
                                                                ,[AppliedOn]
@@ -84,18 +79,14 @@ namespace Stove.Migrator
                                                                (@VERSION
                                                                ,@APPLIEDON
                                                                ,@DESCRIPTION)",
-                                new SqlParameter("@VERSION", versionInfo.Version),
-                                new SqlParameter("@APPLIEDON", versionInfo.AppliedOn),
-                                new SqlParameter("@DESCRIPTION", versionInfo.Description));
-                        }
-                        catch (Exception exception)
-                        {
-                            logger?.Invoke($"An error occured while migration is runing: {exception}");
-                            throw;
-                        }
-
-                        _unitOfWorkManager.Current.SaveChanges();
-                        uow.Complete();
+                            new SqlParameter("@VERSION", versionInfo.Version),
+                            new SqlParameter("@APPLIEDON", versionInfo.AppliedOn),
+                            new SqlParameter("@DESCRIPTION", versionInfo.Description));
+                    }
+                    catch (Exception exception)
+                    {
+                        logger?.Invoke($"An error occured while migration is runing: {exception}");
+                        throw;
                     }
                 }
             }

@@ -8,9 +8,6 @@ using Domain.Data;
 
 using HibernatingRhinos.Profiler.Appender.EntityFramework;
 
-using Stove.EntityFramework;
-using Stove.NLog;
-
 namespace Stove.Migrator.Executer
 {
     public class Program
