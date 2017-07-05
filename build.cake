@@ -12,7 +12,7 @@ using NuGet;
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 
-var projectName = "Stove.EntityFramerk.Migrator";
+var projectName = "Stove.EntityFramework.Migrator";
 var solution = "./" + projectName + ".sln";
 
 var appveyorBranch = EnvironmentVariable("APPVEYOR_REPO_BRANCH");
@@ -31,7 +31,7 @@ var testProjectNames = new List<string>()
                       };
 
 var nupkgPath = "nupkg";
-var nupkgRegex = $"**/{projectName}*.nupkg";
+var nupkgRegex = $"**/Stove*.nupkg";
 var nugetPath = toolpath + "/NuGet.CommandLine/tools/nuget.exe";
 var nugetQueryUrl = "https://www.nuget.org/api/v2/";
 var nugetPushUrl = "https://www.nuget.org/api/v2/package";
@@ -42,7 +42,7 @@ var NUGET_PUSH_SETTINGS = new NuGetPushSettings
                               ApiKey = nugetApiKey
                           };
 
-var isDeployableBranch = branch == master;
+var isDeployableBranch = branch == "master";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS

@@ -7,6 +7,11 @@ namespace Stove
 {
     public static class StoveMigratorRegistrationExtensions
     {
+        /// <summary>
+        ///     Uses the stove migrator defaults.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
         public static IIocBuilder UseStoveMigratorDefaults(this IIocBuilder builder)
         {
             return builder
