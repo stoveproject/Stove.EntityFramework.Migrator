@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		build.cake = build.cake
 		build.ps1 = build.ps1
 		common.props = common.props
@@ -21,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stove.Migrator", "src\Stove
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stove.Migrator.Executer", "src\Stove.Migrator.Executer\Stove.Migrator.Executer.csproj", "{8BB66EAD-1F26-4B82-8846-121831FA4A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stove.Migrator.Tests.Domain", "test\Stove.Migrator.Tests.Domain\Stove.Migrator.Tests.Domain.csproj", "{B5AD8D8B-CEB9-496C-9F69-229E5E8E31D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stove.Migrator.Tests.Domain", "test\Stove.Migrator.Tests.Domain\Stove.Migrator.Tests.Domain.csproj", "{B5AD8D8B-CEB9-496C-9F69-229E5E8E31D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stove.Migrator.Tests.Domain.FluentMigrator", "test\Stove.Migrator.Tests.Domain.FluentMigrator\Stove.Migrator.Tests.Domain.FluentMigrator.csproj", "{5A96B747-BBD9-4AA5-86E8-2612C35E0F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stove.Migrator.Tests.Domain.FluentMigrator", "test\Stove.Migrator.Tests.Domain.FluentMigrator\Stove.Migrator.Tests.Domain.FluentMigrator.csproj", "{5A96B747-BBD9-4AA5-86E8-2612C35E0F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
