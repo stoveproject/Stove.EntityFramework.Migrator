@@ -48,7 +48,7 @@ namespace Stove.Migrator.Executer
         /// <param name="builder">The builder.</param>
         /// <param name="configurationAction">The configuration action.</param>
         /// <returns></returns>
-        public static IIocBuilder UseStoveDbContextSeedMigrationStrategy(this IIocBuilder builder, Func<IStoveVersionInfoConfiguration, IStoveVersionInfoConfiguration> configurationAction)
+        public static IIocBuilder UseStoveDbContextSeedMigrationStrategy(this IIocBuilder builder, Func<IStoveMigrationConfiguration, IStoveMigrationConfiguration> configurationAction)
         {
             return builder.RegisterServices(r =>
             {
@@ -63,7 +63,7 @@ namespace Stove.Migrator.Executer
         /// <param name="builder">The builder.</param>
         /// <param name="configurationAction">The configuration action.</param>
         /// <returns></returns>
-        public static IIocBuilder UseStoveAllMigrationStrategies(this IIocBuilder builder, Func<IStoveVersionInfoConfiguration, IStoveVersionInfoConfiguration> configurationAction)
+        public static IIocBuilder UseStoveAllMigrationStrategies(this IIocBuilder builder, Func<IStoveMigrationConfiguration, IStoveMigrationConfiguration> configurationAction)
         {
             return builder.RegisterServices(r =>
             {

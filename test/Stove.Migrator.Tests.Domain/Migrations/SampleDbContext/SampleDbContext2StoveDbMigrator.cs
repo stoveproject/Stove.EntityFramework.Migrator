@@ -2,6 +2,7 @@
 using System.Reflection;
 
 using Stove.Domain.Uow;
+using Stove.Versioning;
 
 namespace Stove.Migrator.Tests.Domain.Migrations.SampleDbContext
 {
@@ -10,7 +11,8 @@ namespace Stove.Migrator.Tests.Domain.Migrations.SampleDbContext
         public SampleDbContext2StoveDbMigrator(
             IConnectionStringResolver connectionStringResolver,
             IUnitOfWorkManager unitOfWorkManager,
-            IEnumerable<IMigrationStrategy> migrationStrategies) : base(connectionStringResolver, unitOfWorkManager, migrationStrategies)
+            IEnumerable<IMigrationStrategy> migrationStrategies,
+            IStoveMigrationConfiguration stoveMigrationConfiguration) : base(connectionStringResolver, unitOfWorkManager, migrationStrategies, stoveMigrationConfiguration) 
         {
         }
 

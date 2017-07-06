@@ -13,12 +13,12 @@ namespace Stove
 {
     public class StoveDbContextMigration<TDbContext> : ITransientDependency where TDbContext : DbContext
     {
-        private readonly IStoveVersionInfoConfiguration _configuration;
+        private readonly IStoveMigrationConfiguration _configuration;
         private readonly IScopeResolver _resolver;
         private readonly IEnumerable<IStoveMigration> _stoveMigrations;
 
         public StoveDbContextMigration(IScopeResolver resolver,
-            IStoveVersionInfoConfiguration configuration,
+            IStoveMigrationConfiguration configuration,
             IEnumerable<IStoveMigration> stoveMigrations)
         {
             _resolver = resolver;
