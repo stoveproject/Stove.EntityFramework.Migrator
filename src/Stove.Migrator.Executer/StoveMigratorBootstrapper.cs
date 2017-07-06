@@ -12,7 +12,7 @@ namespace Stove.Migrator.Executer
     {
         public override void PreStart()
         {
-            Configuration.GetConfigurerIfExists<IStoveVersionInfoConfiguration>()(Resolver.Resolve<IStoveVersionInfoConfiguration>());
+            Configuration.GetConfigurerIfExists<IStoveMigrationConfiguration>()(Resolver.Resolve<IStoveMigrationConfiguration>());
         }
 
         public override void Shutdown()
