@@ -16,15 +16,6 @@ namespace Stove.Migrator.Executer
         public string MigrationType { get; set; }
 
         /// <summary>
-        ///     Gets or sets the migration persistent storage database context.
-        /// </summary>
-        /// <value>
-        ///     The migration persistent storage database context.
-        /// </value>
-        [Option('h', "persistentstorage", HelpText = "DbContext to store VersionInfo table")]
-        public string MigrationPersistentStorageDbContext { get; set; }
-
-        /// <summary>
         ///     Gets or sets the schema.
         /// </summary>
         /// <value>
@@ -39,8 +30,17 @@ namespace Stove.Migrator.Executer
         /// <value>
         ///     The table.
         /// </value>
-        [Option('t', "versioninfotablename", HelpText = "VersionInfo (also known as _MigrationHistory) table custom name", DefaultValue = "StoveVersionInfo", Required = false)]
+        [Option('n', "versioninfotablename", HelpText = "VersionInfo (also known as _MigrationHistory) table custom name", DefaultValue = "StoveVersionInfo", Required = false)]
         public string Table { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the transaction timeout value.
+        /// </summary>
+        /// <value>
+        ///     The Transaction timeout.
+        /// </value>
+        [Option('t', "transactiontimeout", HelpText = "Transaction timeout value in seconds for the UnitOfWork scope", DefaultValue = 30, Required = false)]
+        public int TransactionTimeout { get; set; }
 
         /// <summary>
         ///     Determines whether [is] [the specified migration type].

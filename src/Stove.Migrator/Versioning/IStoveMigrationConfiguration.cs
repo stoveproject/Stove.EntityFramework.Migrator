@@ -1,6 +1,6 @@
 ﻿namespace Stove.Versioning
 {
-    public interface IStoveVersionInfoConfiguration
+    public interface IStoveMigrationConfiguration
     {
         /// <summary>
         ///     Gets or sets the schema.
@@ -17,5 +17,13 @@
         ///     The table.
         /// </value>
         string Table { get; set; }
+
+        /// <summary>
+        /// Gets or sets the transaction timeout
+        /// </summary>
+        /// <value>
+        /// The transaction timeout value in seconds
+        /// </value>
+        int TransactionTimeout { get; set; }
     }
 }
