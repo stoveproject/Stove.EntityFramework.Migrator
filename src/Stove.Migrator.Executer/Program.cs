@@ -49,6 +49,7 @@ namespace Stove.Migrator.Executer
                         configuration.Schema = options.Schema;
                         configuration.Table = options.Table;
                         configuration.TransactionTimeout = options.TransactionTimeout;
+                        configuration.Enviroment = options.Enviroment;
                         return configuration;
                     });
                 }
@@ -61,6 +62,7 @@ namespace Stove.Migrator.Executer
                         configuration.Schema = options.Schema;
                         configuration.Table = options.Table;
                         configuration.TransactionTimeout = options.TransactionTimeout;
+                        configuration.Enviroment = options.Enviroment;
                         return configuration;
                     });
                 }

@@ -25,5 +25,13 @@
         /// The transaction timeout value in seconds
         /// </value>
         int TransactionTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the enviroment
+        /// </summary>
+        /// <value>
+        /// The enviroment.
+        /// </value>
+        string Enviroment { get; set; }
     }
 }

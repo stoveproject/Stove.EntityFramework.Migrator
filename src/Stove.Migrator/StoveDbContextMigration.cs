@@ -61,12 +61,14 @@ namespace Stove
                 {
                     try
                     {
+                        if (!attribute.IsValidEnviroment(_configuration.Enviroment)) return;
+
                         var versionInfo = new VersionInfo(
                             attribute.GetVersion(), Clock.Now,
                             $"Author: {attribute.GetAuthor()}, Description: {attribute.GetDescription()}"
                         );
 
-                        logger?.Invoke($"Migration is runing with following VersionInfo details: Version: {versionInfo.Version} AppliedOn: {versionInfo.AppliedOn} Author: {versionInfo.Description}");
+                        logger?.Invoke($"Migration is runing with following VersionInfo details: Version: {versionInfo.Version} AppliedOn: {versionInfo.AppliedOn} {versionInfo.Description}");
 
                         migration.Execute();
 
