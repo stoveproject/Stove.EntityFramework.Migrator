@@ -48,7 +48,7 @@ namespace Stove.Migrator.Executer
         /// <value>
         ///     The enviroments.
         /// </value>
-        [Option('e', "enviroment",  HelpText = "Valid enviroment for this migration.", Required = true)]
+        [Option('e', "enviroment",  HelpText = "Valid enviroment for this migration.", Required = false)]
         public string Enviroment { get; set; }
 
 

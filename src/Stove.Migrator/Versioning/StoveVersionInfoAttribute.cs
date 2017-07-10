@@ -95,7 +95,7 @@ namespace Stove.Versioning
         /// <returns></returns>
         public bool IsValidEnviroment(string enviroment)
         {
-            return Enviroments.Contains(enviroment);
+            return ((Enviroments == null || !Enviroments.Any()) && string.IsNullOrEmpty(enviroment)) ||  (Enviroments != null && Enviroments.Contains(enviroment));
         }
     }
 }
