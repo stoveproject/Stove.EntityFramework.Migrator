@@ -29,28 +29,11 @@ namespace Stove
 
         public void Migrate(Action<string> logger = null)
         {
-            var dbContextHasVersionInfo = _resolver.Resolve<TDbContext>();
+            var dbContext = _resolver.Resolve<TDbContext>();
 
-            dbContextHasVersionInfo.Database.ExecuteSqlCommand(TransactionalBehavior.EnsureTransaction,
-                $@"
-                                    IF (NOT EXISTS (   SELECT *
-                                                       FROM INFORMATION_SCHEMA.TABLES
-                                                       WHERE TABLE_SCHEMA = '{_configuration.Schema}'
-                                                             AND TABLE_NAME = '{_configuration.Table}'
-                                                   )
-                                       )
-                                    BEGIN
-                                        CREATE TABLE [{_configuration.Schema}].[{_configuration.Table}] (
-                                                                             [Id] [INT] IDENTITY(1,1) PRIMARY KEY,
-                                                                             [Version] NVARCHAR(64) NOT NULL,
-                                                                             [AppliedOn] [DATETIME] NULL,
-                                                                             [Description] NVARCHAR(1024) NULL
-                                                                         );
-                                    END;",
-                new SqlParameter("@SCHEMA", _configuration.Schema),
-                new SqlParameter("@TABLE_NAME", _configuration.Table));
+            CreateVersionInfoTableIfNotExists(dbContext, logger);
 
-            List<VersionInfo> existingVersionInfos = dbContextHasVersionInfo.Database.SqlQuery<VersionInfo>($"SELECT [Id], [Version], [AppliedOn], [Description] FROM [{_configuration.Schema}].[{_configuration.Table}]").ToList();
+            List<VersionInfo> existingVersionInfos = GetVersionInfoTableContent(dbContext, logger);
 
             foreach (IStoveMigration migration in _stoveMigrations)
             {
@@ -72,18 +55,7 @@ namespace Stove
 
                         migration.Execute();
 
-                        dbContextHasVersionInfo.Database.ExecuteSqlCommand($@"
-                                                INSERT INTO [{_configuration.Schema}].[{_configuration.Table}]
-                                                               ([Version]
-                                                               ,[AppliedOn]
-                                                               ,[Description])
-                                                                VALUES
-                                                               (@VERSION
-                                                               ,@APPLIEDON
-                                                               ,@DESCRIPTION)",
-                            new SqlParameter("@VERSION", versionInfo.Version),
-                            new SqlParameter("@APPLIEDON", versionInfo.AppliedOn),
-                            new SqlParameter("@DESCRIPTION", versionInfo.Description));
+                        InsertNewVersionInfoToVersionInfoTable(dbContext, versionInfo, logger);
                     }
                     catch (Exception exception)
                     {
@@ -92,6 +64,46 @@ namespace Stove
                     }
                 }
             }
+        }
+
+        private void CreateVersionInfoTableIfNotExists(DbContext dbContext, Action<string> logger = null)
+        {
+            dbContext.Database.ExecuteSqlCommand(TransactionalBehavior.EnsureTransaction,
+                $@" IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
+                                             WHERE TABLE_SCHEMA = '{_configuration.Schema}'
+                                             AND TABLE_NAME = '{_configuration.Table}'
+                                    )
+                        )
+                        BEGIN
+                            CREATE TABLE [{_configuration.Schema}].[{_configuration.Table}] (
+                                                                    [Id] [INT] IDENTITY(1,1) PRIMARY KEY,
+                                                                    [Version] NVARCHAR(64) NOT NULL,
+                                                                    [AppliedOn] [DATETIME] NULL,
+                                                                    [Description] NVARCHAR(1024) NULL
+                                                                );
+                        END;",
+                new SqlParameter("@SCHEMA", _configuration.Schema),
+                new SqlParameter("@TABLE_NAME", _configuration.Table));
+        }
+
+        private List<VersionInfo> GetVersionInfoTableContent(DbContext dbContext, Action<string> logger = null)
+        {
+            return dbContext.Database.SqlQuery<VersionInfo>($"SELECT [Id], [Version], [AppliedOn], [Description] FROM [{_configuration.Schema}].[{_configuration.Table}]").ToList();
+        }
+
+        private void InsertNewVersionInfoToVersionInfoTable(DbContext dbContext, VersionInfo versionInfo, Action<string> logger = null)
+        {
+            dbContext.Database.ExecuteSqlCommand($@"INSERT INTO [{_configuration.Schema}].[{_configuration.Table}]
+                                                               ([Version]
+                                                               ,[AppliedOn]
+                                                               ,[Description])
+                                                                VALUES
+                                                               (@VERSION
+                                                               ,@APPLIEDON
+                                                               ,@DESCRIPTION)",
+                new SqlParameter("@VERSION", versionInfo.Version),
+                new SqlParameter("@APPLIEDON", versionInfo.AppliedOn),
+                new SqlParameter("@DESCRIPTION", versionInfo.Description));
         }
     }
 }
