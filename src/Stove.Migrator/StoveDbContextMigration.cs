@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 using Autofac.Extras.IocManager;
 
+using Stove.Collections.Extensions;
 using Stove.Timing;
 using Stove.Versioning;
 
@@ -22,7 +24,6 @@ namespace Stove
             IEnumerable<IStoveMigration> stoveMigrations)
         {
             _resolver = resolver;
-
             _configuration = configuration;
             _stoveMigrations = stoveMigrations;
         }
@@ -37,9 +38,8 @@ namespace Stove
 
             foreach (IStoveMigration migration in _stoveMigrations)
             {
-                var stoveVersionInfoAttributes = Attribute.GetCustomAttributes(migration.GetType(), typeof(StoveVersionInfoAttribute), true) as StoveVersionInfoAttribute[];
-
-                if (stoveVersionInfoAttributes == null || !stoveVersionInfoAttributes.Any())
+                StoveVersionInfoAttribute[] stoveVersionInfoAttributes = migration.GetType().GetCustomAttributes<StoveVersionInfoAttribute>().ToArray();
+                if (!stoveVersionInfoAttributes.Any())
                 {
                     logger?.Invoke($"No version attribute found in migration file.");
                     continue;
@@ -47,21 +47,24 @@ namespace Stove
 
                 StoveVersionInfoAttribute stoveVersionInfoAttribute = stoveVersionInfoAttributes.First();
 
-                var enviromentAttributes = Attribute.GetCustomAttributes(migration.GetType(), typeof(EnviromentAttribute), true) as EnviromentAttribute[];
-                EnviromentAttribute enviromentAttribute = enviromentAttributes?.FirstOrDefault();
-
+                var enviromentAttribute = migration.GetType().GetCustomAttribute<EnviromentAttribute>();
                 if (stoveVersionInfoAttribute != null && existingVersionInfos.All(x => x.Version != stoveVersionInfoAttribute.GetVersion()))
                 {
                     try
                     {
-                        if (enviromentAttribute != null && !enviromentAttribute.IsValidEnviroment(_configuration.Enviroment))
+                        if (_configuration.Enviroment != null)
                         {
-                            logger?.Invoke($"Enviroment is not valid for this migration.");
-                            continue;
+                            if (enviromentAttribute != null && !enviromentAttribute.IsValidEnviroment(_configuration.Enviroment))
+                            {
+                                logger?.Invoke($"Enviroment is not valid for this migration.");
+                                continue;
+                            }
                         }
 
-                        if ( (enviromentAttribute == null && _configuration.Enviroment == null) 
-                            || (enviromentAttribute != null && !enviromentAttribute.IsValidEnviroment(_configuration.Enviroment)))
+                        bool workWithoutEnvironment = enviromentAttribute == null && _configuration.Enviroment == null;
+                        bool workWithEnvironment = enviromentAttribute != null && !_configuration.Enviroment.IsNullOrEmpty() && enviromentAttribute.IsValidEnviroment(_configuration.Enviroment);
+
+                        if (workWithoutEnvironment || workWithEnvironment)
                         {
                             var versionInfo = new VersionInfo(stoveVersionInfoAttribute.GetVersion(), Clock.Now,
                                 $"Author: {stoveVersionInfoAttribute.GetAuthor()}, Description: {stoveVersionInfoAttribute.GetDescription()}"

@@ -10,6 +10,6 @@ namespace Stove.Versioning
 
         public int TransactionTimeout { get; set; }
 
-        public string Enviroment { get; set; }
+        public string[] Enviroment { get; set; }
     }
 }

@@ -19,7 +19,9 @@ namespace Stove.Versioning
 
         public bool IsValidEnviroment(params string[] enviroments)
         {
-            return (ExecutionType == ExecuteOn.Any && Enviroments.Any(row => Enviroments.Contains(row))) || (ExecutionType == ExecuteOn.All && ContainsAll(Enviroments, Enviroments));
+            Check.NotNull(enviroments, nameof(enviroments));
+
+            return ExecutionType == ExecuteOn.Any && Enviroments.Any(row => Enviroments.Contains(row)) || ExecutionType == ExecuteOn.All && ContainsAll(enviroments, Enviroments);
 
             bool ContainsAll<T>(IEnumerable<T> source, IEnumerable<T> values)
             {

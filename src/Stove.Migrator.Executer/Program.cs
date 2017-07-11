@@ -26,6 +26,7 @@ namespace Stove.Migrator.Executer
                                             .UseStoveMigratorDefaults();
 
             var options = new MigrationOptions();
+            Parser.Default.ParseArguments(args, options);
             if (Parser.Default.ParseArguments(args, options))
             {
                 if (options.Is(MigrationType.DbUp))
