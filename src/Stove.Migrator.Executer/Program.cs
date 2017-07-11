@@ -26,6 +26,7 @@ namespace Stove.Migrator.Executer
                                             .UseStoveMigratorDefaults();
 
             var options = new MigrationOptions();
+            Parser.Default.ParseArguments(args, options);
             if (Parser.Default.ParseArguments(args, options))
             {
                 if (options.Is(MigrationType.DbUp))
@@ -49,6 +50,7 @@ namespace Stove.Migrator.Executer
                         configuration.Schema = options.Schema;
                         configuration.Table = options.Table;
                         configuration.TransactionTimeout = options.TransactionTimeout;
+                        configuration.Enviroment = options.Enviroment;
                         return configuration;
                     });
                 }
@@ -61,6 +63,7 @@ namespace Stove.Migrator.Executer
                         configuration.Schema = options.Schema;
                         configuration.Table = options.Table;
                         configuration.TransactionTimeout = options.TransactionTimeout;
+                        configuration.Enviroment = options.Enviroment;
                         return configuration;
                     });
                 }

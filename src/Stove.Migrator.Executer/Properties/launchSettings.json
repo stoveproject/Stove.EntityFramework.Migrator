@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Stove.Migrator.Executer": {
+      "commandName": "Project",
+      "commandLineArgs": "-e Dev -t 600 -m DbContextSeed"
+    }
+  }
+}

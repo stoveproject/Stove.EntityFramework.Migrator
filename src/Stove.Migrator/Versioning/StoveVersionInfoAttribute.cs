@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Linq;
 
 namespace Stove.Versioning
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+    [AttributeUsage(AttributeTargets.Class)]
     public class StoveVersionInfoAttribute : Attribute
     {
         /// <summary>
@@ -11,6 +12,7 @@ namespace Stove.Versioning
         /// <param name="author">The author.</param>
         /// <param name="description">The description.</param>
         /// <param name="version">The version.</param>
+        /// <param name="enviroments">Valid enviroments for the migration.</param>
         public StoveVersionInfoAttribute(string author, string description, string version)
         {
             Version = version;
