@@ -37,25 +37,42 @@ namespace Stove
 
             foreach (IStoveMigration migration in _stoveMigrations)
             {
-                var attributes = Attribute.GetCustomAttributes(migration.GetType(), typeof(StoveVersionInfoAttribute), true) as StoveVersionInfoAttribute[];
-                StoveVersionInfoAttribute attribute = attributes?.FirstOrDefault();
+                var stoveVersionInfoAttributes = Attribute.GetCustomAttributes(migration.GetType(), typeof(StoveVersionInfoAttribute), true) as StoveVersionInfoAttribute[];
 
-                if (attribute != null && existingVersionInfos.All(x => x.Version != attribute.GetVersion()))
+                if (stoveVersionInfoAttributes == null || !stoveVersionInfoAttributes.Any())
+                {
+                    logger?.Invoke($"No version attribute found in migration file.");
+                    continue;
+                }
+
+                StoveVersionInfoAttribute stoveVersionInfoAttribute = stoveVersionInfoAttributes.First();
+
+                var enviromentAttributes = Attribute.GetCustomAttributes(migration.GetType(), typeof(EnviromentAttribute), true) as EnviromentAttribute[];
+                EnviromentAttribute enviromentAttribute = enviromentAttributes?.FirstOrDefault();
+
+                if (stoveVersionInfoAttribute != null && existingVersionInfos.All(x => x.Version != stoveVersionInfoAttribute.GetVersion()))
                 {
                     try
                     {
-                        if (!attribute.IsValidEnviroment(_configuration.Enviroment)) return;
+                        if (enviromentAttribute != null && !enviromentAttribute.IsValidEnviroment(_configuration.Enviroment))
+                        {
+                            logger?.Invoke($"Enviroment is not valid for this migration.");
+                            continue;
+                        }
 
-                        var versionInfo = new VersionInfo(
-                            attribute.GetVersion(), Clock.Now,
-                            $"Author: {attribute.GetAuthor()}, Description: {attribute.GetDescription()}"
-                        );
+                        if ( (enviromentAttribute == null && _configuration.Enviroment == null) 
+                            || (enviromentAttribute != null && !enviromentAttribute.IsValidEnviroment(_configuration.Enviroment)))
+                        {
+                            var versionInfo = new VersionInfo(stoveVersionInfoAttribute.GetVersion(), Clock.Now,
+                                $"Author: {stoveVersionInfoAttribute.GetAuthor()}, Description: {stoveVersionInfoAttribute.GetDescription()}"
+                            );
 
-                        logger?.Invoke($"Migration is runing with following VersionInfo details: Version: {versionInfo.Version} AppliedOn: {versionInfo.AppliedOn} {versionInfo.Description}");
+                            logger?.Invoke($"Migration is runing with following VersionInfo details: Version: {versionInfo.Version} AppliedOn: {versionInfo.AppliedOn} {versionInfo.Description}");
 
-                        migration.Execute();
+                            migration.Execute();
 
-                        InsertNewVersionInfoToVersionInfoTable(dbContext, versionInfo, logger);
+                            InsertNewVersionInfoToVersionInfoTable(dbContext, versionInfo, logger);
+                        }
                     }
                     catch (Exception exception)
                     {
