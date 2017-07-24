@@ -28,11 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extras.IocManager" Version="3.0.2" />
+    <PackageReference Include="Autofac.Extras.IocManager" Version="3.1.1" />
     <PackageReference Include="CommandLineParser" Version="1.9.71" />
-    <PackageReference Include="EntityFrameworkProfiler.Appender" Version="4.0.4041" />
-    <PackageReference Include="Stove" Version="1.1.2" />
-    <PackageReference Include="Stove.NLog" Version="1.1.2" />
+    <PackageReference Include="EntityFrameworkProfiler.Appender" Version="4.0.4044" />
+    <PackageReference Include="Stove" Version="1.2.0" />
+    <PackageReference Include="Stove.NLog" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
