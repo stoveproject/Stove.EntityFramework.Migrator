@@ -4,7 +4,8 @@ using Stove.Versioning;
 
 namespace Stove.Migrator.Tests.Domain.Migrations.Migrations
 {
-    [StoveVersionInfo(author: "Ayberk CANTÜRK", description: "Initial Test Stove Migration", version: "201705071543")]
+    [StoveVersionInfo("Ayberk CANTÜRK", "Initial Test Stove Migration", "201705071543")]
+    [Enviroment(ExecuteOn.All, Enviroments.Dev)]
     public class InitialTestStoveMigration : StoveMigration
     {
         public override void Execute()

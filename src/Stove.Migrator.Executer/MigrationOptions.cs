@@ -43,6 +43,16 @@ namespace Stove.Migrator.Executer
         public int TransactionTimeout { get; set; }
 
         /// <summary>
+        ///     Gets or sets the enviroments.
+        /// </summary>
+        /// <value>
+        ///     The enviroments.
+        /// </value>
+        //[Option('e', "enviroment", HelpText = "Valid enviroment for this migration.", Required = false)]
+        [OptionArray('e', "environment")]
+        public string[] Enviroment { get; set; }
+
+        /// <summary>
         ///     Determines whether [is] [the specified migration type].
         /// </summary>
         /// <param name="migrationType">Type of the migration.</param>
