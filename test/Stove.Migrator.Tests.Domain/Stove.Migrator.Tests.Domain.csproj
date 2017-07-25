@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.1.3" />
-    <PackageReference Include="Stove" Version="1.1.2" />
+    <PackageReference Include="Stove" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup>
