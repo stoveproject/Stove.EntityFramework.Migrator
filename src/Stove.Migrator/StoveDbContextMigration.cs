@@ -61,7 +61,7 @@ namespace Stove
                             }
                         }
 
-                        bool workWithoutEnvironment = enviromentAttribute == null && _configuration.Enviroment == null;
+                        bool workWithoutEnvironment = enviromentAttribute == null && _configuration.Enviroment.IsNullOrEmpty();
                         bool workWithEnvironment = enviromentAttribute != null && !_configuration.Enviroment.IsNullOrEmpty() && enviromentAttribute.IsValidEnviroment(_configuration.Enviroment);
 
                         if (workWithoutEnvironment || workWithEnvironment)
