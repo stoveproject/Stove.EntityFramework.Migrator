@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.1.3" />
-    <PackageReference Include="Stove" Version="1.2.6" />
+    <PackageReference Include="Stove" Version="2.0.0-rc1" />
   </ItemGroup>
 
   <ItemGroup>

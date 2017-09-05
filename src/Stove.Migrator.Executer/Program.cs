@@ -14,7 +14,7 @@ namespace Stove.Migrator.Executer
     {
         public static void Main(string[] args)
         {
-            EntityFrameworkProfiler.Initialize();
+           // EntityFrameworkProfiler.Initialize();
 
             IIocBuilder builder = IocBuilder.New
                                             .UseAutofacContainerBuilder()

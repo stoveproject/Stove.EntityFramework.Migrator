@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>Stove.Migrator.Executer</AssemblyName>
     <RootNamespace>Stove.Migrator</RootNamespace>
     <OutputTypeEx>exe</OutputTypeEx>
@@ -28,11 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extras.IocManager" Version="3.1.2" />
+    <PackageReference Include="Autofac.Extras.IocManager" Version="3.1.3" />
     <PackageReference Include="CommandLineParser" Version="1.9.71" />
     <PackageReference Include="EntityFrameworkProfiler.Appender" Version="4.0.4047" />
-    <PackageReference Include="Stove" Version="1.2.6" />
-    <PackageReference Include="Stove.NLog" Version="1.2.6" />
+    <PackageReference Include="Stove" Version="2.0.0-rc1" />
+    <PackageReference Include="Stove.NLog" Version="2.0.0-rc1" />
   </ItemGroup>
 
   <ItemGroup>
