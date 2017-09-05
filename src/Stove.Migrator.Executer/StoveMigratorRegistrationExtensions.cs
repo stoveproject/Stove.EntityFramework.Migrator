@@ -3,6 +3,7 @@ using System.Reflection;
 
 using Autofac.Extras.IocManager;
 
+using Stove.EntityFramework;
 using Stove.Versioning;
 
 namespace Stove.Migrator.Executer

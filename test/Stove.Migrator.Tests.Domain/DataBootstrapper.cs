@@ -7,9 +7,9 @@ namespace Stove.Migrator.Tests.Domain
     {
         public override void PreStart()
         {
-            Configuration.DefaultNameOrConnectionString = "Default";
-            Configuration.TypedConnectionStrings.Add(typeof(SampleDbContext), "Default");
-            Configuration.TypedConnectionStrings.Add(typeof(SampleDbContext2), "Default");
+            StoveConfiguration.DefaultNameOrConnectionString = "Default";
+            StoveConfiguration.TypedConnectionStrings.Add(typeof(SampleDbContext), "Default");
+            StoveConfiguration.TypedConnectionStrings.Add(typeof(SampleDbContext2), "Default");
         }
     }
 }
