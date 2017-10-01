@@ -61,12 +61,7 @@ Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
     {
-        NuGetRestore(solution, new NuGetRestoreSettings
-                  	{
-                  		NoCache = true,
-                  		Verbosity = NuGetVerbosity.Detailed,
-                  		ToolPath = nugetPath
-                  	});
+        DotNetCoreRestore(solution);
     });
 
 Task("Build")
