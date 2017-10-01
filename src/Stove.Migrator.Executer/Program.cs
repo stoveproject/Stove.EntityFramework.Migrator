@@ -4,8 +4,7 @@ using Autofac.Extras.IocManager;
 
 using CommandLine;
 
-using HibernatingRhinos.Profiler.Appender.EntityFramework;
-
+using Stove.EntityFramework;
 using Stove.Migrator.Tests.Domain;
 
 namespace Stove.Migrator.Executer
@@ -14,7 +13,7 @@ namespace Stove.Migrator.Executer
     {
         public static void Main(string[] args)
         {
-           // EntityFrameworkProfiler.Initialize();
+            // EntityFrameworkProfiler.Initialize();
 
             IIocBuilder builder = IocBuilder.New
                                             .UseAutofacContainerBuilder()
