@@ -6,6 +6,7 @@ using CommandLine;
 
 using Stove.EntityFramework;
 using Stove.Migrator.Tests.Domain;
+using Stove.NLog;
 
 namespace Stove.Migrator.Executer
 {
