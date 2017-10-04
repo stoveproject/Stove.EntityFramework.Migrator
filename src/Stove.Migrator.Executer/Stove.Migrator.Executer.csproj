@@ -30,8 +30,8 @@
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="1.9.71" />
     <PackageReference Include="EntityFrameworkProfiler.Appender" Version="4.0.4048" />
-    <PackageReference Include="Stove" Version="2.0.2" />
-    <PackageReference Include="Stove.NLog" Version="2.0.2" />
+    <PackageReference Include="Stove" Version="2.0.3" />
+    <PackageReference Include="Stove.NLog" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
