@@ -20,8 +20,8 @@
   <ItemGroup>
     <PackageReference Include="dbup" Version="4.0.0-beta0002" />
     <PackageReference Include="EntityFramework" Version="6.1.3" />
-    <PackageReference Include="Stove" Version="2.0.3" />
-    <PackageReference Include="Stove.EntityFramework" Version="2.0.3" />
+    <PackageReference Include="Stove" Version="2.0.4" />
+    <PackageReference Include="Stove.EntityFramework" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>
